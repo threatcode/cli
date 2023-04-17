@@ -22,8 +22,8 @@ func main() {
 	if threatcodeDNSNamesStr != "" {
 		threatcodeDNSNames = strings.Split(threatcodeDNSNamesStr, ",")
 	} else {
-		// We use app.dev.threatcode.io for development
-		threatcodeDNSNames = []string{"threatcode.io", "*.threatcode.io", "*.dev.threatcode.io"}
+		// We use app.dev.threatcode.github.io for development
+		threatcodeDNSNames = []string{"threatcode.github.io", "*.threatcode.github.io", "*.dev.threatcode.github.io"}
 	}
 
 	debugLogger.Println("certificate name:", certName)

@@ -26,7 +26,7 @@ osslsigncode sign -h sha512 \
   -pkcs12 "$SIGNING_SECRETS" \
   -pass "$SIGNING_SECRETS_PASSWORD" \
   -n "Threatcode CLI" \
-  -i "https://threatcode.io" \
+  -i "https://threatcode.github.io" \
   -t "http://timestamp.sectigo.com" \
   -in "$APP_PATH_UNSIGNED" \
   -out "$APP_PATH"

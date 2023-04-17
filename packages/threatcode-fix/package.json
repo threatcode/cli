@@ -33,7 +33,7 @@
     "container",
     "scanning"
   ],
-  "author": "threatcode.io",
+  "author": "threatcode.github.io",
   "license": "Apache-2.0",
   "dependencies": {
     "@threatcode/dep-graph": "^1.21.0",

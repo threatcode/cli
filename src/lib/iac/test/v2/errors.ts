@@ -4,7 +4,7 @@ import { CustomError } from '../../../errors';
 import { ScanError } from './scan/results';
 
 const defaultUserMessage =
-  'Your test request could not be completed. Please run the command again with the `-d` flag and contact support@threatcode.io with the contents of the output';
+  'Your test request could not be completed. Please run the command again with the `-d` flag and contact support@threatcode.github.io with the contents of the output';
 
 const threatcodeIacTestErrorsUserMessages = {
   NoPaths: 'No valid paths were provided',

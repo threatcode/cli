@@ -79,7 +79,7 @@ endif
 V1_EXECUTABLE_NAME = $(APPLICATION_NAME)-$(V1_PLATFORM_STING)$(_EXE_POSTFIX)
 V2_DIRECTORY = $(WORKING_DIR)/internal/cliv2
 V1_DIRECTORY = $(WORKING_DIR)/internal/embedded/cliv1
-V1_DOWNLOAD_LINK = https://static.threatcode.io/cli/v$(CLI_V1_VERSION_TAG)/$(V1_EXECUTABLE_NAME)
+V1_DOWNLOAD_LINK = https://static.threatcode.github.io/cli/v$(CLI_V1_VERSION_TAG)/$(V1_EXECUTABLE_NAME)
 V1_EMBEDDED_FILE_TEMPLATE = $(V1_DIRECTORY)/embedded_binary_template.txt
 V1_EMBEDDED_FILE_OUTPUT = embedded$(_SEPARATOR)$(V2_PLATFORM_STRING).go
 V1_WORKING_DIR = $(WORKING_DIR)/..
@@ -99,7 +99,7 @@ LOG_PREFIX = --
 # determine the latest cli version if no version was explicitly defined
 $(CACHE_DIR)/version.mk: $(CACHE_DIR)
 ifeq ($(CLI_V1_VERSION_TAG), $(_EMPTY))
-	$(eval CLI_V1_VERSION_TAG := $(shell curl --fail --progress-bar -L https://static.threatcode.io/cli/latest/version))
+	$(eval CLI_V1_VERSION_TAG := $(shell curl --fail --progress-bar -L https://static.threatcode.github.io/cli/latest/version))
 endif
 	@echo "CLI_V1_VERSION_TAG=$(CLI_V1_VERSION_TAG)\nCLI_V2_VERSION_TAG=$(CLI_V2_VERSION_TAG)" > $(CACHE_DIR)/version.mk
 	@echo "$(LOG_PREFIX) Using cliv1 version ( $(CLI_V1_VERSION_TAG) )"

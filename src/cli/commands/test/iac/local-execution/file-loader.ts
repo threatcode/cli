@@ -51,7 +51,7 @@ export class NoFilesToScanError extends CustomError {
     this.code = IaCErrorCodes.NoFilesToScanError;
     this.strCode = getErrorStringCode(this.code);
     this.userMessage =
-      'Could not find any valid infrastructure as code files. Supported file extensions are tf, yml, yaml & json.\nMore information can be found by running `threatcode iac test --help` or through our documentation:\nhttps://support.threatcode.io/hc/en-us/articles/360012429477-Test-your-Kubernetes-files-with-our-CLI-tool\nhttps://support.threatcode.io/hc/en-us/articles/360013723877-Test-your-Terraform-files-with-our-CLI-tool';
+      'Could not find any valid infrastructure as code files. Supported file extensions are tf, yml, yaml & json.\nMore information can be found by running `threatcode iac test --help` or through our documentation:\nhttps://support.threatcode.github.io/hc/en-us/articles/360012429477-Test-your-Kubernetes-files-with-our-CLI-tool\nhttps://support.threatcode.github.io/hc/en-us/articles/360013723877-Test-your-Terraform-files-with-our-CLI-tool';
   }
 }
 

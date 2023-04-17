@@ -131,7 +131,7 @@ describe('Get Shasum', () => {
 describe('Configuration', () => {
   it('Download and local location', async () => {
     const expectedDownloadLocation =
-      'https://static.threatcode.io/cli/v1.2.3/threatcode-win.exe';
+      'https://static.threatcode.github.io/cli/v1.2.3/threatcode-win.exe';
     const expectedLocalLocation = path.join(
       __dirname,
       '..',

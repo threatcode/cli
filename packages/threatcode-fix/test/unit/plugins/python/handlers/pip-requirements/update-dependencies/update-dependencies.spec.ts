@@ -303,7 +303,7 @@ describe('remediation', () => {
       updateDependencies(requirements, upgrades);
     } catch (e) {
       expect(e.message).toEqual(
-        'No fixes could be applied. Please contact support@threatcode.io',
+        'No fixes could be applied. Please contact support@threatcode.github.io',
       );
     }
   });

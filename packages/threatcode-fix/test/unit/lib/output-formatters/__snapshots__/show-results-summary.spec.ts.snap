@@ -155,7 +155,7 @@ Summary:
   1 issues were successfully fixed
 
 
-Tip: Re-run in debug mode to see more information: DEBUG=*threatcode* <COMMAND>. If the issue persists contact support@threatcode.io"
+Tip: Re-run in debug mode to see more information: DEBUG=*threatcode* <COMMAND>. If the issue persists contact support@threatcode.github.io"
 `;
 
 exports[`showResultsSummary has unresolved only 1`] = `
@@ -176,5 +176,5 @@ Summary:
   1 issues are fixable
   
 
-Tip: Re-run in debug mode to see more information: DEBUG=*threatcode* <COMMAND>. If the issue persists contact support@threatcode.io"
+Tip: Re-run in debug mode to see more information: DEBUG=*threatcode* <COMMAND>. If the issue persists contact support@threatcode.github.io"
 `;

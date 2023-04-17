@@ -142,5 +142,5 @@ $ threatcode ignore --file-path='./**/vendor/**/*.cpp' --file-path-group='global
 
 For more information see:
 
-- [Ignore vulnerabilities using Threatcode CLI](https://docs.threatcode.io/threatcode-cli/test-for-vulnerabilities/ignore-vulnerabilities-using-threatcode-cli)
-- [IaC ignores using the .threatcode policy file](https://docs.threatcode.io/products/threatcode-infrastructure-as-code/threatcode-cli-for-infrastructure-as-code/iac-ignores-using-the-.threatcode-policy-file)
+- [Ignore vulnerabilities using Threatcode CLI](https://docs.threatcode.github.io/threatcode-cli/test-for-vulnerabilities/ignore-vulnerabilities-using-threatcode-cli)
+- [IaC ignores using the .threatcode policy file](https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code/threatcode-cli-for-infrastructure-as-code/iac-ignores-using-the-.threatcode-policy-file)

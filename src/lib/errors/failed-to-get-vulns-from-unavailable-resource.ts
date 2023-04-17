@@ -1,9 +1,9 @@
 import { CustomError } from './custom-error';
 
 const errorNpmMessage =
-  'Please check the version and package name and try running `threatcode test` again.\nFor additional assistance, run `threatcode help` or check out our docs \n(link to: https://support.threatcode.io/hc/en-us/articles/360003851277#UUID-ba99a73f-110d-1f1d-9e7a-1bad66bf0996).';
+  'Please check the version and package name and try running `threatcode test` again.\nFor additional assistance, run `threatcode help` or check out our docs \n(link to: https://support.threatcode.github.io/hc/en-us/articles/360003851277#UUID-ba99a73f-110d-1f1d-9e7a-1bad66bf0996).';
 const errorRepositoryMessage =
-  'Try testing this repository at https://threatcode.io/test/.\nFor additional assistance, run `threatcode help` or check out our docs \n(link to: https://support.threatcode.io/hc/en-us/articles/360003851277#UUID-ba99a73f-110d-1f1d-9e7a-1bad66bf0996).';
+  'Try testing this repository at https://threatcode.github.io/test/.\nFor additional assistance, run `threatcode help` or check out our docs \n(link to: https://support.threatcode.github.io/hc/en-us/articles/360003851277#UUID-ba99a73f-110d-1f1d-9e7a-1bad66bf0996).';
 
 export function FailedToGetVulnsFromUnavailableResource(
   root: string,

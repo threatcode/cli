@@ -80,7 +80,7 @@ Summary:
   1 issues are fixable
   
 
-Tip: Re-run in debug mode to see more information: DEBUG=*threatcode* <COMMAND>. If the issue persists contact support@threatcode.io",
+Tip: Re-run in debug mode to see more information: DEBUG=*threatcode* <COMMAND>. If the issue persists contact support@threatcode.github.io",
   "meta": Object {
     "failed": 1,
     "fixableIssues": 1,

@@ -1,34 +1,34 @@
 <p align="center">
-  <img src="https://threatcode.io/style/asset/logo/threatcode-print.svg" />
+  <img src="https://threatcode.github.io/style/asset/logo/threatcode-print.svg" />
 </p>
 
 # Threatcode CLI
 
-[Threatcode](https://threatcode.io) scans and monitors your projects for security vulnerabilities.
+[Threatcode](https://threatcode.github.io) scans and monitors your projects for security vulnerabilities.
 
 ![Threatcode CLI screenshot](help/threatcode-cli-screenshot.png)
 
-# What is [Threatcode](https://threatcode.io)?
+# What is [Threatcode](https://threatcode.github.io)?
 
-[Threatcode](https://threatcode.io) is a developer-first cloud-native security tool.
+[Threatcode](https://threatcode.github.io) is a developer-first cloud-native security tool.
 It covers multiple areas of application security:
 
-1. [**Threatcode Open Source**](https://threatcode.io/product/open-source-security-management/): Find and automatically fix open source vulnerabilities
-2. [**Threatcode Code**](https://threatcode.io/product/threatcode-code/): Find and fix vulnerabilities in your application code in real time
-3. [**Threatcode Container**](https://threatcode.io/product/container-vulnerability-management/): Find and fix vulnerabilities in container images and Kubernetes applications
-4. [**Threatcode Infrastructure as Code**](https://threatcode.io/product/infrastructure-as-code-security/): Find and fix insecure configurations in Terraform and Kubernetes code
+1. [**Threatcode Open Source**](https://threatcode.github.io/product/open-source-security-management/): Find and automatically fix open source vulnerabilities
+2. [**Threatcode Code**](https://threatcode.github.io/product/threatcode-code/): Find and fix vulnerabilities in your application code in real time
+3. [**Threatcode Container**](https://threatcode.github.io/product/container-vulnerability-management/): Find and fix vulnerabilities in container images and Kubernetes applications
+4. [**Threatcode Infrastructure as Code**](https://threatcode.github.io/product/infrastructure-as-code-security/): Find and fix insecure configurations in Terraform and Kubernetes code
 
-[Learn more about what Threatcode can do and sign up for a free account »](https://threatcode.io)
+[Learn more about what Threatcode can do and sign up for a free account »](https://threatcode.github.io)
 
 # What is Threatcode CLI?
 
-Threatcode CLI brings the functionality of [Threatcode](https://threatcode.io) into your development workflow. It can be run locally or in your CI/CD pipeline to scan your projects for security issues.
+Threatcode CLI brings the functionality of [Threatcode](https://threatcode.github.io) into your development workflow. It can be run locally or in your CI/CD pipeline to scan your projects for security issues.
 
 ## Supported languages and tools
 
-Threatcode supports many languages and tools, including Java, .NET, JavaScript, Python, Golang, PHP, C/C++, Ruby, Scala and more. See our [Language Support documentation](https://support.threatcode.io/hc/en-us/articles/360020352437-Language-support-summary).
+Threatcode supports many languages and tools, including Java, .NET, JavaScript, Python, Golang, PHP, C/C++, Ruby, Scala and more. See our [Language Support documentation](https://support.threatcode.github.io/hc/en-us/articles/360020352437-Language-support-summary).
 
-CLI also supports [Docker scanning](https://support.threatcode.io/hc/en-us/articles/360003946897-Threatcode-Container-security-overview) and [Terraform, k8s and other Infrastructure as Code files scanning](https://support.threatcode.io/hc/en-us/categories/360001342678-Infrastructure-as-code).
+CLI also supports [Docker scanning](https://support.threatcode.github.io/hc/en-us/articles/360003946897-Threatcode-Container-security-overview) and [Terraform, k8s and other Infrastructure as Code files scanning](https://support.threatcode.github.io/hc/en-us/categories/360001342678-Infrastructure-as-code).
 
 ---
 
@@ -59,31 +59,31 @@ yarn global add threatcode
 
 Use [GitHub Releases](https://github.com/threatcode/threatcode/releases) to download a standalone executable of Threatcode CLI for your platform.
 
-We also provide these standalone executables on our official CDN. See [the `release.json` file](https://static.threatcode.io/cli/latest/release.json) for the download links:
+We also provide these standalone executables on our official CDN. See [the `release.json` file](https://static.threatcode.github.io/cli/latest/release.json) for the download links:
 
 ```text
-https://static.threatcode.io/cli/latest/release.json
+https://static.threatcode.github.io/cli/latest/release.json
 
 # Or for specific version or platform
-https://static.threatcode.io/cli/v1.666.0/release.json
-https://static.threatcode.io/cli/latest/threatcode-macos
+https://static.threatcode.github.io/cli/v1.666.0/release.json
+https://static.threatcode.github.io/cli/latest/threatcode-macos
 ```
 
 For example, to download and run the latest Threatcode CLI on macOS, you could run:
 
 ```bash
-curl https://static.threatcode.io/cli/latest/threatcode-macos -o threatcode
+curl https://static.threatcode.github.io/cli/latest/threatcode-macos -o threatcode
 chmod +x ./threatcode
 mv ./threatcode /usr/local/bin/
 ```
 
 You can also use these direct links to download the executables:
 
-- macOS: https://static.threatcode.io/cli/latest/threatcode-macos
-- Windows: https://static.threatcode.io/cli/latest/threatcode-win.exe
-- Linux: https://static.threatcode.io/cli/latest/threatcode-linux
-- Linux (arm64): https://static.threatcode.io/cli/latest/threatcode-linux-arm64
-- Alpine: https://static.threatcode.io/cli/latest/threatcode-alpine
+- macOS: https://static.threatcode.github.io/cli/latest/threatcode-macos
+- Windows: https://static.threatcode.github.io/cli/latest/threatcode-win.exe
+- Linux: https://static.threatcode.github.io/cli/latest/threatcode-linux
+- Linux (arm64): https://static.threatcode.github.io/cli/latest/threatcode-linux-arm64
+- Alpine: https://static.threatcode.github.io/cli/latest/threatcode-alpine
 
 Drawback of this method is, that you will have to manually keep the Threatcode CLI up to date.
 
@@ -91,8 +91,8 @@ Drawback of this method is, that you will have to manually keep the Threatcode C
 
 You can verify both shasum of downloaded binaries and their GPG signatures.
 
-Download location on `static.threatcode.io` contains a file called `sha256sums.txt.asc`.
-You can download it directly `https://static.threatcode.io/cli/latest/sha256sums.txt.asc` or for a specific version like `https://static.threatcode.io/cli/v1.666.0/sha256sums.txt.asc`.
+Download location on `static.threatcode.github.io` contains a file called `sha256sums.txt.asc`.
+You can download it directly `https://static.threatcode.github.io/cli/latest/sha256sums.txt.asc` or for a specific version like `https://static.threatcode.github.io/cli/v1.666.0/sha256sums.txt.asc`.
 
 To check that a downloaded file matches the checksum, use a `sha256sum` command like so:
 
@@ -103,7 +103,7 @@ grep threatcode-macos sha256sums.txt.asc | sha256sum -c -
 If you want to verify Threatcode CLI standalone binaries against [Threatcode CLI GPG key](help/_about-this-project/threatcode-code-signing-public.pgp), you will need to import it first:
 
 ```bash
-# A22665FB96CAB0E0973604C83676C4B8289C296E is the key belonging to code-signing@threatcode.io
+# A22665FB96CAB0E0973604C83676C4B8289C296E is the key belonging to code-signing@threatcode.github.io
 # Copy of this public key is also in this repository /help/_about-this-project/threatcode-code-signing-public.pgp
 gpg --keyserver hkps://keys.openpgp.org --recv-keys A22665FB96CAB0E0973604C83676C4B8289C296E
 ```
@@ -119,7 +119,7 @@ Command output should look like:
 ```plain
 gpg: Signature made So  8 Jan 14:11:44 2023 CET
 gpg:                using EDDSA key A22665FB96CAB0E0973604C83676C4B8289C296E
-gpg: Good signature from "Threatcode Limited <code-signing@threatcode.io>" [unknown]
+gpg: Good signature from "Threatcode Limited <code-signing@threatcode.github.io>" [unknown]
 gpg: WARNING: This key is not certified with a trusted signature!
 gpg:          There is no indication that the signature belongs to the owner.
 Primary key fingerprint: A226 65FB 96CA B0E0 9736  04C8 3676 C4B8 289C 296E
@@ -176,10 +176,10 @@ Threatcode also offers many integrations into developer tooling. These integrati
 - [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=threatcode-security.threatcode-vulnerability-scanner)
 - [Eclipse IDE Extension](https://github.com/threatcode/threatcode-eclipse-plugin)
 - [Maven plugin](https://github.com/threatcode/threatcode-maven-plugin)
-- And many more. See [the Integrations documentation](https://support.threatcode.io/hc/en-us/categories/360000598398-Integrations)
+- And many more. See [the Integrations documentation](https://support.threatcode.github.io/hc/en-us/categories/360000598398-Integrations)
 
 <p align="center">
-  <a href="https://support.threatcode.io/hc/en-us/categories/360000598398-Integrations">
+  <a href="https://support.threatcode.github.io/hc/en-us/categories/360000598398-Integrations">
     <img src="help/ide.svg" alt="Threatcode CLI IDE integration" width="50%" />
   </a>
 </p>
@@ -198,7 +198,7 @@ See the [full Threatcode CLI help](./help/cli-commands).
 
 ## Authenticating Threatcode CLI
 
-Threatcode CLI depends on [Threatcode.io](https://threatcode.io) APIs. Connect your Threatcode CLI with [Threatcode.io](https://threatcode.io) by running:
+Threatcode CLI depends on [threatcode.github.io](https://threatcode.github.io) APIs. Connect your Threatcode CLI with [threatcode.github.io](https://threatcode.github.io) by running:
 
 ```bash
 threatcode auth
@@ -208,7 +208,7 @@ threatcode auth
 
 Depending on your project's language, you might need to setup your language environment before using Threatcode.
 
-See our [Language Support documentation](https://support.threatcode.io/hc/en-us/articles/360020352437-Language-support-summary).
+See our [Language Support documentation](https://support.threatcode.github.io/hc/en-us/articles/360020352437-Language-support-summary).
 
 ## Scanning your project
 
@@ -218,7 +218,7 @@ If you are already in a folder with a supported project, start by running:
 threatcode test
 ```
 
-Or scan a Docker image by its tag with [Threatcode Container](https://threatcode.io/product/container-vulnerability-management/):
+Or scan a Docker image by its tag with [Threatcode Container](https://threatcode.github.io/product/container-vulnerability-management/):
 
 ```bash
 threatcode container test ubuntu:18.04
@@ -235,7 +235,7 @@ threatcode iac test /path/to/kubernetes_file.yaml
 Threatcode can also monitor your project periodically and alert you for new vulnerabilities. The `threatcode monitor` is similar to `threatcode test` and can be used to create a project on the Threatcode website that will be continuously monitored for new vulnerabilities.
 
 <p align="center">
-  <a href="https://threatcode.io">
+  <a href="https://threatcode.github.io">
     <img src="help/monitor.svg" alt="Threatcode CLI monitor projects" width="70%" />
   </a>
 </p>
@@ -244,7 +244,7 @@ Threatcode can also monitor your project periodically and alert you for new vuln
 > threatcode monitor
 Monitoring /project (project-name)...
 
-Explore this snapshot at https://app.threatcode.io/org/my-org/project/29361c2c-9005-4692-8df4-88f1c040fa7c/history/e1c994b3-de5d-482b-9281-eab4236c851e
+Explore this snapshot at https://app.threatcode.github.io/org/my-org/project/29361c2c-9005-4692-8df4-88f1c040fa7c/history/e1c994b3-de5d-482b-9281-eab4236c851e
 
 Notifications about newly disclosed issues related to these dependencies will be emailed to you.
 ```
@@ -293,13 +293,13 @@ threatcode code --help
 
 # Getting support
 
-If you need support using Threatcode CLI, please [contact support](https://support.threatcode.io).
+If you need support using Threatcode CLI, please [contact support](https://support.threatcode.github.io).
 
 We do not actively monitor GitHub Issues so any issues there may go unnoticed.
 
 # Contributing
 
-If you are an external contributor, before working on any contributions, please first [contact support](https://support.threatcode.io) to discuss the issue or feature request with us.
+If you are an external contributor, before working on any contributions, please first [contact support](https://support.threatcode.github.io) to discuss the issue or feature request with us.
 
 If you are contributing to Threatcode CLI, see [our contributing guidelines](CONTRIBUTING.md)
 

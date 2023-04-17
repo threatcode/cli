@@ -14,7 +14,7 @@ jobs:
     steps:
       - run: |
           gh auth setup-git
-          git config --global user.email "noreply@threatcode.io"
+          git config --global user.email "noreply@threatcode.github.io"
           git config --global user.name "$GITHUB_ACTOR"
           gh repo clone threatcode/threatcode cli -- --depth=1 --quiet
           gh repo clone threatcode/user-docs docs -- --depth=1 --quiet

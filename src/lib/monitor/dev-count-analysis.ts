@@ -4,7 +4,7 @@
  * This is use only on the `threatcode monitor` command as that is used to monitor a project's dependencies in an
  * on-going manner.
  * It collects the email of a git user and the most recent commit timestamp (both per the `git log`
- * output) and can be disabled by config (see https://threatcode.io/policies/tracking-and-analytics/).
+ * output) and can be disabled by config (see https://threatcode.github.io/policies/tracking-and-analytics/).
  */
 import { exec } from 'child_process';
 import { Contributor } from '../types';

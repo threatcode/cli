@@ -21,7 +21,7 @@ export function showFixTip(
       )} to address these issues.${chalk.bold(
         '`threatcode fix`',
       )} is a new CLI command in that aims to automatically apply the recommended updates for supported ecosystems.` +
-      '\nSee documentation on how to enable this beta feature: https://docs.threatcode.io/threatcode-cli/fix-vulnerabilities-from-the-cli/automatic-remediation-with-threatcode-fix#enabling-threatcode-fix'
+      '\nSee documentation on how to enable this beta feature: https://docs.threatcode.github.io/threatcode-cli/fix-vulnerabilities-from-the-cli/automatic-remediation-with-threatcode-fix#enabling-threatcode-fix'
     );
   }
 

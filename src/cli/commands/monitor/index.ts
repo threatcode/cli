@@ -55,7 +55,7 @@ const debug = Debug('threatcode');
 const appVulnsReleaseWarningMsg = `${theme.icon.WARNING} Important: Beginning January 24th, 2023, application dependencies in container
 images will be scanned by default when using the threatcode container test/monitor
 commands. If you are using Threatcode in a CI pipeline, action may be required. Read
-https://threatcode.io/blog/securing-container-applications-using-the-threatcode-cli/ for
+https://threatcode.github.io/blog/securing-container-applications-using-the-threatcode-cli/ for
 more info.`;
 
 // This is used instead of `let x; try { x = await ... } catch { cleanup }` to avoid
@@ -249,7 +249,7 @@ export default async function monitor(...args0: MethodArgs): Promise<any> {
               'scannedProject is missing depGraph or depTree, cannot run test/monitor',
             );
             throw new FailedToRunTestError(
-              'Your monitor request could not be completed. Please email support@threatcode.io',
+              'Your monitor request could not be completed. Please email support@threatcode.github.io',
             );
           }
           const extractedPackageManager = extractPackageManager(

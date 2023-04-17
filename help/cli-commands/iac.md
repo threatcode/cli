@@ -8,7 +8,7 @@
 
 The `threatcode iac` commands find and report security issues in Infrastructure as Code files; detect, track, and alert on infrastructure drift and unmanaged resources; and create a .driftigore file.
 
-For more information see [Threatcode CLI for Infrastructure as Code](https://docs.threatcode.io/scan-cloud-deployment/threatcode-infrastructure-as-code/threatcode-cli-for-infrastructure-as-code)
+For more information see [Threatcode CLI for Infrastructure as Code](https://docs.threatcode.github.io/scan-cloud-deployment/threatcode-infrastructure-as-code/threatcode-cli-for-infrastructure-as-code)
 
 ## `threatcode iac` commands and the help docs
 

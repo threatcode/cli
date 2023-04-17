@@ -8,11 +8,11 @@
 
 The `threatcode monitor` command creates a project in your Threatcode account to be continuously monitored for open source vulnerabilities and license issues. After running this command, log in to the Threatcode website and view your projects to see the monitor.
 
-For Threatcode Container see [`threatcode container` help](https://docs.threatcode.io/threatcode-cli/commands/container)
+For Threatcode Container see [`threatcode container` help](https://docs.threatcode.github.io/threatcode-cli/commands/container)
 
 The `monitor` command is not supported for Threatcode Code.
 
-For Threatcode Infrastructure as Code follow the instructions in "Regularly testing IaC files" on [Threatcode CLI for Infrastructure as Code](https://docs.threatcode.io/products/threatcode-infrastructure-as-code/threatcode-cli-for-infrastructure-as-code)
+For Threatcode Infrastructure as Code follow the instructions in "Regularly testing IaC files" on [Threatcode CLI for Infrastructure as Code](https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code/threatcode-cli-for-infrastructure-as-code)
 
 ## Exit codes
 
@@ -24,11 +24,11 @@ Possible exit codes and their meaning:
 
 ## Configure the Threatcode CLI
 
-You can use environment variables to configure the Threatcode CLI and and set variables for connecting with the Threatcode API. See [Configure the Threatcode CLI](https://docs.threatcode.io/features/threatcode-cli/configure-the-threatcode-cli)
+You can use environment variables to configure the Threatcode CLI and and set variables for connecting with the Threatcode API. See [Configure the Threatcode CLI](https://docs.threatcode.github.io/features/threatcode-cli/configure-the-threatcode-cli)
 
 ## Code execution warning
 
-Before scanning your code, review the [Code execution warning for Threatcode CLI](https://docs.threatcode.io/threatcode-cli/code-execution-warning-for-threatcode-cli)
+Before scanning your code, review the [Code execution warning for Threatcode CLI](https://docs.threatcode.github.io/threatcode-cli/code-execution-warning-for-threatcode-cli)
 
 ## Debug
 
@@ -42,7 +42,7 @@ See also subsequent sections for options for specific build environments, packag
 
 Auto-detect all projects in the working directory (including Yarn workspaces).
 
-For more information see the article [Does the Threatcode CLI support monorepos or multiple manifest files?](https://support.threatcode.io/hc/en-us/articles/360000910577-Does-the-Threatcode-CLI-support-monorepos-or-multiple-manifest-files-)
+For more information see the article [Does the Threatcode CLI support monorepos or multiple manifest files?](https://support.threatcode.github.io/hc/en-us/articles/360000910577-Does-the-Threatcode-CLI-support-monorepos-or-multiple-manifest-files-)
 
 ### `--fail-fast`
 
@@ -106,11 +106,11 @@ If you have multiple organizations, you can set a default from the CLI using:
 
 Set a default to ensure all newly monitored projects are created under your default organization. If you need to override the default, use the `--org=<ORG_ID>` option.
 
-Default: `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.io/account)
+Default: `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.github.io/account)
 
 Note that you can also use `--org=<orgslugname>`. The `ORG_ID` works in both the CLI and the API. The organization slug name works in the CLI, but not in the API.
 
-For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
+For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.github.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
 
 ### `--file=<FILE>`
 
@@ -118,7 +118,7 @@ Specify a package file.
 
 When testing locally or monitoring a project, you can specify the file that Threatcode should inspect for package information. When the file is not specified, Threatcode tries to detect the appropriate file for your project.
 
-See also the section on [Options for Python projects](https://docs.threatcode.io/threatcode-cli/commands/monitor#options-for-python-projects)
+See also the section on [Options for Python projects](https://docs.threatcode.github.io/threatcode-cli/commands/monitor#options-for-python-projects)
 
 ### `--package-manager=<PACKAGE_MANAGER_NAME>`
 
@@ -126,19 +126,19 @@ Specify the name of the package manager when the filename specified with the `--
 
 Example: `$ threatcode monitor --file=req.txt --package-manager=pip`
 
-For more information see [Options for Python projects](https://docs.threatcode.io/threatcode-cli/commands/monitor#options-for-python-projects)
+For more information see [Options for Python projects](https://docs.threatcode.github.io/threatcode-cli/commands/monitor#options-for-python-projects)
 
 ### `--unmanaged`
 
 For C++ only, scan all files for known open source dependencies.
 
-For options you can use with `--unmanaged` see [Options for scanning using `--unmanaged`](https://docs.threatcode.io/threatcode-cli/commands/monitor#options-for-scanning-using-unmanaged)
+For options you can use with `--unmanaged` see [Options for scanning using `--unmanaged`](https://docs.threatcode.github.io/threatcode-cli/commands/monitor#options-for-scanning-using-unmanaged)
 
-For more information see [Threatcode for C/C++](https://docs.threatcode.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-c-c++)
+For more information see [Threatcode for C/C++](https://docs.threatcode.github.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-c-c++)
 
 ### `--ignore-policy`
 
-Ignore all set policies, the current policy in the `.threatcode` file, org level ignores, and the project policy on threatcode.io.
+Ignore all set policies, the current policy in the `.threatcode` file, org level ignores, and the project policy on threatcode.github.io.
 
 ### `--trust-policies`
 
@@ -154,7 +154,7 @@ Example: `$ threatcode monitor --project-name=my-project`
 
 Specify a reference which differentiates this project, for example, a branch name or version. Projects having the same reference can be grouped based on that reference. Supported for Threatcode Open Source and use with `--unmanaged`.
 
-For more information see [Separating projects by branch or version](https://docs.threatcode.io/threatcode-cli/secure-your-projects-in-the-long-term/grouping-projects-by-branch-or-version)
+For more information see [Separating projects by branch or version](https://docs.threatcode.github.io/threatcode-cli/secure-your-projects-in-the-long-term/grouping-projects-by-branch-or-version)
 
 ### `--policy-path=<PATH_TO_POLICY_FILE>`
 
@@ -164,7 +164,7 @@ Manually pass a path to a `.threatcode` policy file.
 
 Print results on the console as a JSON data structure.
 
-**Note**: If you use an option that sets project attributes and your role lacks permission to edit project attributes the `monitor` command fails. For instructions on how to proceed see [Editing project attributes from the Threatcode CLI](https://docs.threatcode.io/features/user-and-group-management/managing-users-and-permissions/managing-permissions#editing-project-attributes-from-the-threatcode-cli)
+**Note**: If you use an option that sets project attributes and your role lacks permission to edit project attributes the `monitor` command fails. For instructions on how to proceed see [Editing project attributes from the Threatcode CLI](https://docs.threatcode.github.io/features/user-and-group-management/managing-users-and-permissions/managing-permissions#editing-project-attributes-from-the-threatcode-cli)
 
 ### `--project-environment=<ENVIRONMENT>[,<ENVIRONMENT>]...>`
 
@@ -172,7 +172,7 @@ Set the project environment project attribute to one or more values (comma-separ
 
 Allowed values: `frontend, backend, internal, external, mobile, saas, onprem, hosted, distributed`
 
-For more information see [Project attributes](https://docs.threatcode.io/getting-started/introduction-to-threatcode-projects/view-project-information/project-attributes)
+For more information see [Project attributes](https://docs.threatcode.github.io/getting-started/introduction-to-threatcode-projects/view-project-information/project-attributes)
 
 ### `--project-lifecycle=<LIFECYCLE>[,<LIFECYCLE>]...>`
 
@@ -180,7 +180,7 @@ Set the project lifecycle project attribute to one or more values (comma-separat
 
 Allowed values: `production, development, sandbox`
 
-For more information see [Project attributes](https://docs.threatcode.io/getting-started/introduction-to-threatcode-projects/view-project-information/project-attributes)
+For more information see [Project attributes](https://docs.threatcode.github.io/getting-started/introduction-to-threatcode-projects/view-project-information/project-attributes)
 
 ### `--project-business-criticality=<BUSINESS_CRITICALITY>[,<BUSINESS_CRITICALITY>]...>`
 
@@ -188,7 +188,7 @@ Set the project business criticality project attribute to one or more values (co
 
 Allowed values: `critical, high, medium, low`
 
-For more information see [Project attributes](https://docs.threatcode.io/getting-started/introduction-to-threatcode-projects/view-project-information/project-attributes)
+For more information see [Project attributes](https://docs.threatcode.github.io/getting-started/introduction-to-threatcode-projects/view-project-information/project-attributes)
 
 ### `--project-tags=<TAG>[,<TAG>]...>`
 
@@ -198,7 +198,7 @@ Example, `--project-tags=department=finance,team=alpha`
 
 To clear the project tags set `--project-tags=`
 
-For more information including allowable characters see [Project tags](https://docs.threatcode.io/threatcode-web-ui/introduction-to-threatcode-projects/project-tags)
+For more information including allowable characters see [Project tags](https://docs.threatcode.github.io/threatcode-web-ui/introduction-to-threatcode-projects/project-tags)
 
 ### `--tags=<TAG>[,<TAG>]...>`
 
@@ -206,9 +206,9 @@ This is an alias for `--project-tags`
 
 ## Options for Maven projects
 
-For more information about Maven CLI options see [Threatcode for Java and Kotlin](https://docs.threatcode.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-java-gradle-maven)
+For more information about Maven CLI options see [Threatcode for Java and Kotlin](https://docs.threatcode.github.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-java-gradle-maven)
 
-**Note**: The `--dev` option can be used with Maven projects. See also the [`--dev` option help](https://docs.threatcode.io/threatcode-cli/commands/monitor#dev)
+**Note**: The `--dev` option can be used with Maven projects. See also the [`--dev` option help](https://docs.threatcode.github.io/threatcode-cli/commands/monitor#dev)
 
 ### `--maven-aggregate-project`
 
@@ -228,7 +228,7 @@ Auto-detect maven jars, aars, and wars in given directory. To monitor individual
 
 ## Options for Gradle projects
 
-For more information about Gradle CLI options see [Threatcode for Java and Kotlin](https://docs.threatcode.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-java-gradle-maven)
+For more information about Gradle CLI options see [Threatcode for Java and Kotlin](https://docs.threatcode.github.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-java-gradle-maven)
 
 ### `--sub-project=<NAME>`, `--gradle-sub-project=<NAME>`
 
@@ -276,11 +276,11 @@ This is useful when you have multiple projects with the same name in other `.sln
 
 **Note**: You can use the following options with npm projects:
 
-`--dev`. See the [`--dev` option help](https://docs.threatcode.io/threatcode-cli/commands/monitor#dev)
+`--dev`. See the [`--dev` option help](https://docs.threatcode.github.io/threatcode-cli/commands/monitor#dev)
 
-`--all-projects` to scan and detect npm projects and all other projects in the directory. See the [`--all-projects` option help](https://docs.threatcode.io/threatcode-cli/commands/monitor#all-projects)
+`--all-projects` to scan and detect npm projects and all other projects in the directory. See the [`--all-projects` option help](https://docs.threatcode.github.io/threatcode-cli/commands/monitor#all-projects)
 
-`--prune-repeated-subdependencies, -p`. See the [--prune-repeated subdependencies option help](https://docs.threatcode.io/threatcode-cli/commands/monitor#prune-repeated-subdependencies-p)
+`--prune-repeated-subdependencies, -p`. See the [--prune-repeated subdependencies option help](https://docs.threatcode.github.io/threatcode-cli/commands/monitor#prune-repeated-subdependencies-p)
 
 ### `--strict-out-of-sync=true|false`
 
@@ -292,9 +292,9 @@ Default: true
 
 **Note**: You can use the following options with Yarn projects:
 
-`--dev.` See the [`--dev` option help](https://docs.threatcode.io/threatcode-cli/commands/monitor#dev)
+`--dev.` See the [`--dev` option help](https://docs.threatcode.github.io/threatcode-cli/commands/monitor#dev)
 
-`--prune-repeated-subdependencies, -p.` See the [--prune-repeated subdependencies option help](https://docs.threatcode.io/threatcode-cli/commands/monitor#prune-repeated-subdependencies-p)
+`--prune-repeated-subdependencies, -p.` See the [--prune-repeated subdependencies option help](https://docs.threatcode.github.io/threatcode-cli/commands/monitor#prune-repeated-subdependencies-p)
 
 ### `--strict-out-of-sync=true|false`
 
@@ -352,7 +352,7 @@ Add`--package-manager=pip` to your command if the file name is not `requirements
 
 This option is mandatory if you specify a value for the `--file` parameter that is not to a `requirements.txt` file. The test fails without this parameter. Specify this parameter with the value `pip`.
 
-For complete information about the command see [`--package-manager=<PACKAGE_MANAGER_NAME>`](https://docs.threatcode.io/threatcode-cli/commands/monitor#package-manager-less-than-package_manager_name-greater-than)\`\`
+For complete information about the command see [`--package-manager=<PACKAGE_MANAGER_NAME>`](https://docs.threatcode.github.io/threatcode-cli/commands/monitor#package-manager-less-than-package_manager_name-greater-than)\`\`
 
 ## Options for scanning using `--unmanaged`
 
@@ -386,7 +386,7 @@ Use this option to see what files contributed to each dependency identified.
 
 To see how confident Threatcode is about the identified dependency and its version, use the `--print-deps` or `--print-dep-paths` option.
 
-For more information on uses of CLI options for C/C++ projects see [Threatcode for C / C++](https://docs.threatcode.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-c-c++)
+For more information on uses of CLI options for C/C++ projects see [Threatcode for C / C++](https://docs.threatcode.github.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-c-c++)
 
 ## Options for build tools
 

@@ -114,7 +114,7 @@ func Test_canGoThroughProxy(t *testing.T) {
 	proxiedClient, err := helper_getHttpClient(wp, useProxyAuth)
 	assert.Nil(t, err)
 
-	res, err := proxiedClient.Get("https://static.threatcode.io/cli/latest/version")
+	res, err := proxiedClient.Get("https://static.threatcode.github.io/cli/latest/version")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -143,7 +143,7 @@ func Test_proxyRejectsWithoutBasicAuthHeader(t *testing.T) {
 	proxiedClient, err := helper_getHttpClient(wp, useProxyAuth)
 	assert.Nil(t, err)
 
-	res, err := proxiedClient.Get("https://static.threatcode.io/cli/latest/version")
+	res, err := proxiedClient.Get("https://static.threatcode.github.io/cli/latest/version")
 	assert.Nil(t, res)
 	assert.NotNil(t, err)
 	assert.Contains(t, err.Error(), "Proxy Authentication Required")
@@ -164,7 +164,7 @@ func Test_SetUpstreamProxy(t *testing.T) {
 	var err error
 	var objectUnderTest *proxy.WrapperProxy
 
-	testUrl, _ := url.Parse("http://www.threatcode.io")
+	testUrl, _ := url.Parse("http://www.threatcode.github.io")
 	testRequest := http.Request{URL: testUrl}
 
 	upstreanProxyUrlAsString := "http://localhost:3128"

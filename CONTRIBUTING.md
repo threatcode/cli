@@ -1,6 +1,6 @@
 # Contributing
 
-> This guide is for internal Threatcode contributors with write access to this repository. If you are an external contributor, before working on any contributions, please first [contact support](https://support.threatcode.io) to discuss the issue or feature request with us.
+> This guide is for internal Threatcode contributors with write access to this repository. If you are an external contributor, before working on any contributions, please first [contact support](https://support.threatcode.github.io) to discuss the issue or feature request with us.
 
 ## Prerequisites
 
@@ -162,9 +162,9 @@ You will need to fix any remaining issues manually.
 
 When making changes, ensure documentation is updated accordingly.
 
-User-facing documentation is [available on GitBook](https://docs.threatcode.io/features/threatcode-cli).
+User-facing documentation is [available on GitBook](https://docs.threatcode.github.io/features/threatcode-cli).
 
-`threatcode help` output must also be [edited on GitBook](https://docs.threatcode.io/features/threatcode-cli/commands). Changes will automatically be pulled into Threatcode CLI as pull requests.
+`threatcode help` output must also be [edited on GitBook](https://docs.threatcode.github.io/features/threatcode-cli/commands). Changes will automatically be pulled into Threatcode CLI as pull requests.
 
 ## Creating a branch
 

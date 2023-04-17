@@ -39,7 +39,7 @@ interface Config {
 const config = (threatcodeConfig.loadConfig(
   __dirname + '/../..',
 ) as unknown) as Config;
-const defaultApiUrl = 'https://api.threatcode.io';
+const defaultApiUrl = 'https://api.threatcode.github.io';
 
 const configDefinedApiUrl = userConfig.get('endpoint');
 const envvarDefinedApiUrl = process.env.THREATCODE_API;
@@ -84,6 +84,6 @@ if (!config.ROOT) {
   config.ROOT = getRootUrl(config.API);
 }
 
-config.PUBLIC_VULN_DB_URL = 'https://security.threatcode.io';
+config.PUBLIC_VULN_DB_URL = 'https://security.threatcode.github.io';
 
 export default config;

@@ -350,7 +350,7 @@ function getDockerRemediationDocsLink(dockerAdvice: string, config): string {
   return (
     chalk.white('\n\nLearn more: ') +
     chalk.white.underline(
-      'https://docs.threatcode.io/products/threatcode-container/getting-around-the-threatcode-container-ui/base-image-detection',
+      'https://docs.threatcode.github.io/products/threatcode-container/getting-around-the-threatcode-container-ui/base-image-detection',
     )
   );
 }

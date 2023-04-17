@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Threatcode Support
-    url: https://support.threatcode.io
+    url: https://support.threatcode.github.io
     about: Contact Threatcode Support
   - name: Threatcode User Docs
-    url: https://docs.threatcode.io
+    url: https://docs.threatcode.github.io
     about: Threatcode User Documentation

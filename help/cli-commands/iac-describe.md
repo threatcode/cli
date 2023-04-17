@@ -14,7 +14,7 @@ The `threatcode iac describe` command detects infrastructure drift and unmanaged
 - Changes to managed resources not reflected in the Terraform state file are **drifts**.
 - Resources that exist but are not in your Terraform state file are **unmanaged resources**.
 
-For detailed information and examples, see [IaC describe command examples](https://docs.threatcode.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/iac-describe-command-examples)
+For detailed information and examples, see [IaC describe command examples](https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/iac-describe-command-examples)
 
 For a list of related commands see the threatcode [iac help](iac.md); `iac --help`
 
@@ -28,11 +28,11 @@ Possible exit codes and their meaning:
 
 ## Configure the Threatcode CLI
 
-You can use environment variables and set variables for connecting with the Threatcode API; see [Configure the Threatcode CLI](https://docs.threatcode.io/threatcode-cli/configure-the-threatcode-cli)
+You can use environment variables and set variables for connecting with the Threatcode API; see [Configure the Threatcode CLI](https://docs.threatcode.github.io/threatcode-cli/configure-the-threatcode-cli)
 
 ## Configure the Terraform provider
 
-You can set environment variables to configure the Terraform provider used by the `describe` command; see [Configure cloud providers](https://docs.threatcode.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/configure-cloud-providers)
+You can set environment variables to configure the Terraform provider used by the `describe` command; see [Configure cloud providers](https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/configure-cloud-providers)
 
 ## Debug
 
@@ -58,17 +58,17 @@ Scan both managed and unmanaged resources.
 
 ### `--org=<ORG_ID>`
 
-Specify the `<ORG_ID>` to run Threatcode commands tied to a specific organization. Overrides the default `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.io/account)
+Specify the `<ORG_ID>` to run Threatcode commands tied to a specific organization. Overrides the default `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.github.io/account)
 
 Note that you can also use `--org=<orgslugname>`. The `ORG_ID` works in both the CLI and the API. The organization slug name works in the CLI, but not in the API.
 
-For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
+For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.github.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
 
 ### `--from=<STATE>[,<STATE>...]`
 
 Specify multiple Terraform state files to be read. Glob patterns are supported.
 
-For more information including **a list of supported IaC sources** and how to use them, see [IAC Sources usage](https://docs.threatcode.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/iac-sources-usage)
+For more information including **a list of supported IaC sources** and how to use them, see [IAC Sources usage](https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/iac-sources-usage)
 
 ### `--to=<PROVIDER+TYPE>`
 
@@ -132,7 +132,7 @@ Filter rules allow you to build a JMESPath expression to include or exclude a se
 
 To filter on resource attributes, deep mode must be enabled. Deep mode is enabled by default for `--all` and `--only-managed`. To enable deep mode while using `--only-unmanaged`, use the `--deep` option.
 
-For more information see [Filter results](https://docs.threatcode.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/filter-results)
+For more information see [Filter results](https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/filter-results)
 
 ### `--deep`
 
@@ -140,7 +140,7 @@ Enable deep mode. Deep mode enables you to use the `--filter` option to include 
 
 Deep mode is enabled by default for `--all` and `--only-managed`. Use `--deep` if you want to filter on attributes while using `--only-unmanaged`.
 
-For more information see [Filter results](https://docs.threatcode.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/filter-results)
+For more information see [Filter results](https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/filter-results)
 
 ### `--strict`
 
@@ -178,7 +178,7 @@ Output the report as html into a file.
 
 ## Examples for threatcode iac describe command
 
-For more examples, see [IaC describe command examples](https://docs.threatcode.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/iac-describe-command-examples)
+For more examples, see [IaC describe command examples](https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/iac-describe-command-examples)
 
 ### Detect drift and unmanaged resources on AWS with a single local Terraform state
 

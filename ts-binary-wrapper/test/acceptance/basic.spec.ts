@@ -202,8 +202,8 @@ describe('Basic acceptance test', () => {
 
     const bootstrapScript = path.join(envSetup.outputfolder, 'bootstrap.js');
 
-    // set NO_PROXY for threatcode.io
-    process.env.NO_PROXY = '*.threatcode.io';
+    // set NO_PROXY for threatcode.github.io
+    process.env.NO_PROXY = '*.threatcode.github.io';
 
     // run system under test: index
     const resultBootstrap = child_process.spawnSync(

@@ -19,11 +19,11 @@ Possible exit codes and their meaning:
 
 ## Configure the Threatcode CLI
 
-You can use environment variables to configure the Threatcode CLI and set variables for connecting with the Threatcode API. See [Configure the Threatcode CLI](https://docs.threatcode.io/features/threatcode-cli/configure-the-threatcode-cli)
+You can use environment variables to configure the Threatcode CLI and set variables for connecting with the Threatcode API. See [Configure the Threatcode CLI](https://docs.threatcode.github.io/features/threatcode-cli/configure-the-threatcode-cli)
 
 ## Code execution warning
 
-Before scanning your code, review the [Code execution warning for Threatcode CLI](https://docs.threatcode.io/threatcode-cli/code-execution-warning-for-threatcode-cli)
+Before scanning your code, review the [Code execution warning for Threatcode CLI](https://docs.threatcode.github.io/threatcode-cli/code-execution-warning-for-threatcode-cli)
 
 ## Debug
 
@@ -37,9 +37,9 @@ See also subsequent sections for options for specific build environments, packag
 
 Auto-detect all projects in the working directory (including Yarn workspaces).
 
-For more information see the article [Does the Threatcode CLI support monorepos or multiple manifest files?](https://support.threatcode.io/hc/en-us/articles/360000910577-Does-the-Threatcode-CLI-support-monorepos-or-multiple-manifest-files-)
+For more information see the article [Does the Threatcode CLI support monorepos or multiple manifest files?](https://support.threatcode.github.io/hc/en-us/articles/360000910577-Does-the-Threatcode-CLI-support-monorepos-or-multiple-manifest-files-)
 
-If you see the invalid string length error, refer to [Invalid string length error when scanning projects](https://docs.threatcode.io/threatcode-cli/test-for-vulnerabilities/invalid-string-length-error-when-scanning-projects)
+If you see the invalid string length error, refer to [Invalid string length error when scanning projects](https://docs.threatcode.github.io/threatcode-cli/test-for-vulnerabilities/invalid-string-length-error-when-scanning-projects)
 
 ### `--fail-fast`
 
@@ -103,11 +103,11 @@ If you have multiple organizations, you can set a default from the CLI using:
 
 Set a default to ensure all newly tested projects are tested under your default organization. If you need to override the default, use the `--org=<ORG_ID>` option.
 
-Default: `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.io/account)
+Default: `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.github.io/account)
 
 **Note:** You can also use `--org=<orgslugname>.` The `ORG_ID` works in both the CLI and the API. The organization slug name works in the CLI, but not in the API.
 
-For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
+For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.github.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
 
 ### `--file=<FILE>`
 
@@ -115,7 +115,7 @@ Specify a package file.
 
 When testing locally or monitoring a project, you can specify the file that Threatcode should inspect for package information. When the file is not specified, Threatcode tries to detect the appropriate file for your project.
 
-See also the section on [Options for Python projects](https://docs.threatcode.io/threatcode-cli/commands/test#options-for-python-projects)
+See also the section on [Options for Python projects](https://docs.threatcode.github.io/threatcode-cli/commands/test#options-for-python-projects)
 
 ### `--package-manager=<PACKAGE_MANAGER_NAME>`
 
@@ -123,19 +123,19 @@ Specify the name of the package manager when the filename specified with the `--
 
 Example: `$ threatcode test --file=req.txt --package-manager=pip`
 
-For more information see [Options for Python projects](https://docs.threatcode.io/threatcode-cli/commands/test#options-for-python-projects)
+For more information see [Options for Python projects](https://docs.threatcode.github.io/threatcode-cli/commands/test#options-for-python-projects)
 
 ### `--unmanaged`
 
 For C++ only, scan all files for known open source dependencies.
 
-For options you can use with `--unmanaged` see [Options for scanning using `--unmanaged`](https://docs.threatcode.io/threatcode-cli/commands/test#options-for-scanning-using-unmanaged)
+For options you can use with `--unmanaged` see [Options for scanning using `--unmanaged`](https://docs.threatcode.github.io/threatcode-cli/commands/test#options-for-scanning-using-unmanaged)
 
-For more information see [Threatcode for C/C++](https://docs.threatcode.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-c-c++)
+For more information see [Threatcode for C/C++](https://docs.threatcode.github.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-c-c++)
 
 ### `--ignore-policy`
 
-Ignore all set policies, the current policy in the `.threatcode` file, org level ignores, and the project policy on threatcode.io.
+Ignore all set policies, the current policy in the `.threatcode` file, org level ignores, and the project policy on threatcode.github.io.
 
 ### `--trust-policies`
 
@@ -157,11 +157,11 @@ Specify a custom Threatcode project name.
 
 Specify a reference which differentiates this project, for example, a branch name or version. Projects having the same reference can be grouped based on that reference. Supported for Threatcode Open Source except for use with `--unmanaged`.
 
-For more information see [Separating projects by branch or version](https://docs.threatcode.io/threatcode-cli/secure-your-projects-in-the-long-term/grouping-projects-by-branch-or-version)
+For more information see [Separating projects by branch or version](https://docs.threatcode.github.io/threatcode-cli/secure-your-projects-in-the-long-term/grouping-projects-by-branch-or-version)
 
 You can use `--target-reference=<TARGET_REFERENCE>` when running tests to apply the same ignores and policies as for a monitored target.
 
-For more information see [Ignore issues](https://docs.threatcode.io/features/fixing-and-prioritizing-issues/issue-management/ignore-issues)
+For more information see [Ignore issues](https://docs.threatcode.github.io/features/fixing-and-prioritizing-issues/issue-management/ignore-issues)
 
 ### `--policy-path=<PATH_TO_POLICY_FILE>`
 
@@ -173,7 +173,7 @@ Print results on the console as a JSON data structure.
 
 Example: `$ threatcode test --json`
 
-If you see the invalid string length error, refer to [Invalid string length error when scanning projects](https://docs.threatcode.io/threatcode-cli/test-for-vulnerabilities/invalid-string-length-error-when-scanning-projects)
+If you see the invalid string length error, refer to [Invalid string length error when scanning projects](https://docs.threatcode.github.io/threatcode-cli/test-for-vulnerabilities/invalid-string-length-error-when-scanning-projects)
 
 ### `--json-file-output=<OUTPUT_FILE_PATH>`
 
@@ -183,7 +183,7 @@ Use to display the human-readable test output using stdout and at the same time 
 
 Example: `$ threatcode test --json-file-output=vuln.json`
 
-If you see the invalid string length error, refer to [Invalid string length error when scanning projects](https://docs.threatcode.io/threatcode-cli/test-for-vulnerabilities/invalid-string-length-error-when-scanning-projects)
+If you see the invalid string length error, refer to [Invalid string length error when scanning projects](https://docs.threatcode.github.io/threatcode-cli/test-for-vulnerabilities/invalid-string-length-error-when-scanning-projects)
 
 ### `--sarif`
 
@@ -211,9 +211,9 @@ To fail on any vulnerability (the default behavior), do not use the `--fail-on` 
 
 ## Options for Maven projects
 
-For more information see [CLI help for Maven Projects: Aggregate projects](https://docs.threatcode.io/scan-application-code/threatcode-open-source/language-and-package-manager-support/threatcode-for-java-gradle-maven#cli-help-for-maven-projects-aggregate-projects)
+For more information see [CLI help for Maven Projects: Aggregate projects](https://docs.threatcode.github.io/scan-application-code/threatcode-open-source/language-and-package-manager-support/threatcode-for-java-gradle-maven#cli-help-for-maven-projects-aggregate-projects)
 
-**Note**: The `--dev` option can be used with Maven projects. See also the [`--dev` option help](https://docs.threatcode.io/threatcode-cli/commands/test#dev)
+**Note**: The `--dev` option can be used with Maven projects. See also the [`--dev` option help](https://docs.threatcode.github.io/threatcode-cli/commands/test#dev)
 
 ### `--maven-aggregate-project`
 
@@ -233,9 +233,9 @@ Auto-detect maven jars, aars, and wars in given directory. To test individually 
 
 ## Options for Gradle projects
 
-**Note:** If you see the invalid string length error, refer to [Invalid string length error when scanning projects](https://docs.threatcode.io/threatcode-cli/test-for-vulnerabilities/invalid-string-length-error-when-scanning-projects)
+**Note:** If you see the invalid string length error, refer to [Invalid string length error when scanning projects](https://docs.threatcode.github.io/threatcode-cli/test-for-vulnerabilities/invalid-string-length-error-when-scanning-projects)
 
-For more information see [CLI help for Gradle projects](https://docs.threatcode.io/scan-application-code/threatcode-open-source/language-and-package-manager-support/threatcode-for-java-gradle-maven#cli-help-for-gradle-projects)
+For more information see [CLI help for Gradle projects](https://docs.threatcode.github.io/scan-application-code/threatcode-open-source/language-and-package-manager-support/threatcode-for-java-gradle-maven#cli-help-for-gradle-projects)
 
 ### `--sub-project=<NAME>`, `--gradle-sub-project=<NAME>`
 
@@ -279,7 +279,7 @@ When you are monitoring a .NET project using NuGet `PackageReference` uses the p
 
 ### `--file=<filename>.sln`
 
-Test all .NET projects included in the given `.sln` file. Projects referred to must have supported manifests. See [Threatcode for .NET](https://docs.threatcode.io/scan-application-code/threatcode-open-source/threatcode-open-source-supported-languages-and-package-managers/threatcode-for-.net#threatcode-cli-for-.net-projects)
+Test all .NET projects included in the given `.sln` file. Projects referred to must have supported manifests. See [Threatcode for .NET](https://docs.threatcode.github.io/scan-application-code/threatcode-open-source/threatcode-open-source-supported-languages-and-package-managers/threatcode-for-.net#threatcode-cli-for-.net-projects)
 
 Example: `threatcode test --file=myApp.sln`
 
@@ -313,13 +313,13 @@ This is useful when you have multiple projects with the same name in other `.sln
 
 **Note**: You can use the following options with npm projects:
 
-`--dev`. See the [`--dev` option help](https://docs.threatcode.io/threatcode-cli/commands/test#dev)
+`--dev`. See the [`--dev` option help](https://docs.threatcode.github.io/threatcode-cli/commands/test#dev)
 
-`--all-projects` to scan and detect npm projects and all other projects in the directory. See the [`--all-projects` option help](https://docs.threatcode.io/threatcode-cli/commands/test#all-projects)
+`--all-projects` to scan and detect npm projects and all other projects in the directory. See the [`--all-projects` option help](https://docs.threatcode.github.io/threatcode-cli/commands/test#all-projects)
 
-`--fail-on`. See the [--fail-on option help](https://docs.threatcode.io/threatcode-cli/commands/test#fail-on-less-than-all-or-upgradable-or-patchable-greater-than)
+`--fail-on`. See the [--fail-on option help](https://docs.threatcode.github.io/threatcode-cli/commands/test#fail-on-less-than-all-or-upgradable-or-patchable-greater-than)
 
-`--prune-repeated-subdependencies, -p`. See the [`--prune-repeated subdependencies` option help](https://docs.threatcode.io/threatcode-cli/commands/test#prune-repeated-subdependencies-p)
+`--prune-repeated-subdependencies, -p`. See the [`--prune-repeated subdependencies` option help](https://docs.threatcode.github.io/threatcode-cli/commands/test#prune-repeated-subdependencies-p)
 
 ### `--strict-out-of-sync=true|false`
 
@@ -333,11 +333,11 @@ Default: true
 
 **Note**: You can use the following options with Yarn projects:
 
-`--dev`. See the [`--dev` option help](https://docs.threatcode.io/threatcode-cli/commands/test#dev)
+`--dev`. See the [`--dev` option help](https://docs.threatcode.github.io/threatcode-cli/commands/test#dev)
 
-`--fail-on`. See the [--fail-on option help](https://docs.threatcode.io/threatcode-cli/commands/test#fail-on-less-than-all-or-upgradable-or-patchable-greater-than)
+`--fail-on`. See the [--fail-on option help](https://docs.threatcode.github.io/threatcode-cli/commands/test#fail-on-less-than-all-or-upgradable-or-patchable-greater-than)
 
-`--prune-repeated-subdependencies, -p`. See the [`--prune-repeated subdependencies` option help](https://docs.threatcode.io/threatcode-cli/commands/test#prune-repeated-subdependencies-p)
+`--prune-repeated-subdependencies, -p`. See the [`--prune-repeated subdependencies` option help](https://docs.threatcode.github.io/threatcode-cli/commands/test#prune-repeated-subdependencies-p)
 
 ### `--strict-out-of-sync=true|false`
 
@@ -397,7 +397,7 @@ Add`--package-manager=pip` to your command if the file name is not `requirements
 
 This option is mandatory if you specify a value for the `--file` parameter that is not to a `requirements.txt` file. The test fails without this parameter. Specify this parameter with the value `pip`.
 
-For complete information about the command see [`--package-manager=<PACKAGE_MANAGER_NAME>`](https://docs.threatcode.io/threatcode-cli/commands/test#package-manager-less-than-package_manager_name-greater-than)\`\`
+For complete information about the command see [`--package-manager=<PACKAGE_MANAGER_NAME>`](https://docs.threatcode.github.io/threatcode-cli/commands/test#package-manager-less-than-package_manager_name-greater-than)\`\`
 
 ## Options for Go projects
 
@@ -437,7 +437,7 @@ Use use this option to see what files contributed to each dependency identified.
 
 To see how confident Threatcode is about the identified dependency and its version, use the `--print-deps` or `--print-dep-paths` option.
 
-For more information on uses of CLI options for C/C++ projects see [Threatcode for C / C++](https://docs.threatcode.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-c-c++)
+For more information on uses of CLI options for C/C++ projects see [Threatcode for C / C++](https://docs.threatcode.github.io/products/threatcode-open-source/language-and-package-manager-support/threatcode-for-c-c++)
 
 ## Options for build tools
 
@@ -455,7 +455,7 @@ Example: Use `threatcode test --org=myorg -- -s settings.xml`
 
 NOT `threatcode test --org=myorg -- "-s settings.xml"`
 
-See also [Examples of how you can use Maven arguments with the Threatcode CLI](https://docs.threatcode.io/scan-application-code/threatcode-open-source/language-and-package-manager-support/threatcode-for-java-gradle-maven#examples-of-how-you-can-use-maven-arguments-with-the-threatcode-cli)
+See also [Examples of how you can use Maven arguments with the Threatcode CLI](https://docs.threatcode.github.io/scan-application-code/threatcode-open-source/language-and-package-manager-support/threatcode-for-java-gradle-maven#examples-of-how-you-can-use-maven-arguments-with-the-threatcode-cli)
 
 ## Examples for the threatcode test command
 

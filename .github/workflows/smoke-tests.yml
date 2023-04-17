@@ -93,7 +93,7 @@ jobs:
         if: ${{ matrix.threatcode_install_method == 'docker-bundle' && matrix.os == 'macos' }}
         run: |
           pushd "$(mktemp -d)"
-          curl 'https://static.threatcode.io/cli/latest/${{ matrix.threatcode_cli_dl_file }}' | tar -xz
+          curl 'https://static.threatcode.github.io/cli/latest/${{ matrix.threatcode_cli_dl_file }}' | tar -xz
           pushd ./docker
           ls -la
           sudo ln -s "$(pwd)/threatcode-mac.sh" ./threatcode
@@ -115,7 +115,7 @@ jobs:
       - name: Install Threatcode with binary - Non-Windows
         if: ${{ matrix.threatcode_install_method == 'binary' && matrix.os != 'windows' }}
         run: |
-          curl -Lo ./threatcode-cli 'https://static.threatcode.io/cli/latest/${{ matrix.threatcode_cli_dl_file }}'
+          curl -Lo ./threatcode-cli 'https://static.threatcode.github.io/cli/latest/${{ matrix.threatcode_cli_dl_file }}'
           chmod -R +x ./threatcode-cli
           sudo mv ./threatcode-cli /usr/local/bin/threatcode
           threatcode --version

@@ -46,7 +46,7 @@ export function handleProcessingStatus(
 ): void {
   if (response?.status === 'CANCELLED' || response?.status === 'ERROR') {
     throw new FailedToRunTestError(
-      'Failed to process the project. Please run the command again with the `-d` flag and contact support@threatcode.io with the contents of the output',
+      'Failed to process the project. Please run the command again with the `-d` flag and contact support@threatcode.github.io with the contents of the output',
     );
   }
 }

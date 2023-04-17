@@ -262,7 +262,7 @@ function vulnerabilitiesToIacIssues(
         resolve,
       },
       lineNumber: v.resource.line || -1,
-      documentation: v.rule.documentation, // only works for rules available on threatcode.io
+      documentation: v.rule.documentation, // only works for rules available on threatcode.github.io
       isGeneratedByCustomRule: !!v.rule.isGeneratedByCustomRule,
       path: v.resource.path || [], // needs to be fixed, currently doesn't show the full path
       compliance: [],

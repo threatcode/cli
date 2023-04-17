@@ -52,7 +52,7 @@ const SEPARATOR = '\n-------------------------------------------------------\n';
 const appVulnsReleaseWarningMsg = `${theme.icon.WARNING} Important: Beginning January 24th, 2023, application dependencies in container
 images will be scanned by default when using the threatcode container test/monitor
 commands. If you are using Threatcode in a CI pipeline, action may be required. Read
-https://threatcode.io/blog/securing-container-applications-using-the-threatcode-cli/ for
+https://threatcode.github.io/blog/securing-container-applications-using-the-threatcode-cli/ for
 more info.`;
 
 // TODO: avoid using `as any` whenever it's possible

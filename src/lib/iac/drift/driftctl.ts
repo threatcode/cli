@@ -61,7 +61,7 @@ const driftctlChecksums = {
     '864ff0810466ed2917b3347866b5da80fae43e2487b18a563f1d7f299e5f1518',
 };
 
-const dctlBaseUrl = 'https://static.threatcode.io/cli/driftctl/';
+const dctlBaseUrl = 'https://static.threatcode.github.io/cli/driftctl/';
 
 const driftctlPath: string = path.join(
   cachePath,

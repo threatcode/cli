@@ -144,7 +144,7 @@ export async function initLocalCache({
   // We extract the Threatcode rules after the custom rules to ensure our files
   // always overwrite whatever might be there.
   try {
-    const BUNDLE_URL = 'https://static.threatcode.io/cli/wasm/bundle.tar.gz';
+    const BUNDLE_URL = 'https://static.threatcode.github.io/cli/wasm/bundle.tar.gz';
     const response = await streamRequest({
       method: 'get',
       url: BUNDLE_URL,
@@ -187,7 +187,7 @@ export class FailedToDownloadRulesError extends CustomError {
     this.code = IaCErrorCodes.FailedToDownloadRulesError;
     this.strCode = getErrorStringCode(this.code);
     this.userMessage =
-      'We were unable to download the security rules, please ensure the network can access https://static.threatcode.io';
+      'We were unable to download the security rules, please ensure the network can access https://static.threatcode.github.io';
   }
 }
 

@@ -6,7 +6,7 @@ export class NoSupportedSastFiles extends CustomError {
     'We found 0 supported files ' +
     '\nPlease see our documentation for Threatcode Code language and framework support\n' +
     chalk.underline(
-      'https://docs.threatcode.io/products/threatcode-code/threatcode-code-language-and-framework-support',
+      'https://docs.threatcode.github.io/products/threatcode-code/threatcode-code-language-and-framework-support',
     );
 
   constructor() {

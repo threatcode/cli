@@ -46,7 +46,7 @@ export class WrapperConfiguration {
   }
 
   public getDownloadLocation(): string {
-    const baseUrl = 'https://static.threatcode.io/cli/v';
+    const baseUrl = 'https://static.threatcode.github.io/cli/v';
     return baseUrl + this.version + '/' + this.binaryName;
   }
 
@@ -105,8 +105,8 @@ export function determineBinaryName(platform: string, arch: string): string {
       ' ' +
       archname +
       ') is not supported by Threatcode.\n' +
-      ' You may want to consider using Docker to run Threatcode, for details see: https://docs.threatcode.io/threatcode-cli/install-the-threatcode-cli#threatcode-cli-in-a-docker-image\n' +
-      ' If you experience errors please check http://support.threatcode.io/.';
+      ' You may want to consider using Docker to run Threatcode, for details see: https://docs.threatcode.github.io/threatcode-cli/install-the-threatcode-cli#threatcode-cli-in-a-docker-image\n' +
+      ' If you experience errors please check http://support.threatcode.github.io/.';
     throw Error(getWarningMessage(defaultErrorMsg));
   }
 
@@ -207,7 +207,7 @@ export function formatErrorMessage(message: string): boolean {
     "You don't have the permissions to install Threatcode. Please try the following options:\n" +
     '* If you are installing with increased privileges (for example sudo), try adding --unsafe-perm as a parameter to npm install\n' +
     '* If you run NPM <= 6, please upgrade to a later version.\n' +
-    'If the problems persist please check http://support.threatcode.io/.';
+    'If the problems persist please check http://support.threatcode.github.io/.';
 
   const certificateError =
     'If you are running Threatcode in an environment that intercepts SSL traffic, please specify\n' +
@@ -217,8 +217,8 @@ export function formatErrorMessage(message: string): boolean {
   const degradedCLIWarning =
     'You are currently running a degraded version of the Threatcode CLI.\n' +
     'As a result, some features of the CLI will be unavailable.\n' +
-    'For information on how to resolve this, please see this article: https://docs.threatcode.io/threatcode-cli/installing-threatcode-cli-as-a-binary-via-npm\n' +
-    'For any assistance, please check http://support.threatcode.io/.';
+    'For information on how to resolve this, please see this article: https://docs.threatcode.github.io/threatcode-cli/installing-threatcode-cli-as-a-binary-via-npm\n' +
+    'For any assistance, please check http://support.threatcode.github.io/.';
 
   let warning = '';
 

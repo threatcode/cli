@@ -56,7 +56,7 @@ export function createSarifOutputForIac(
       fullName: 'Threatcode Infrastructure as Code',
       version: getVersion(),
       informationUri:
-        'https://docs.threatcode.io/products/threatcode-infrastructure-as-code',
+        'https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code',
       rules: extractReportingDescriptor(issues),
     },
   };

@@ -47,7 +47,7 @@ Use this option when your default organization does not have API entitlement.
 
 If this option is omitted, the default organization for your account will be used.
 
-This is the `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.io/account)&#x20;
+This is the `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.github.io/account)&#x20;
 
 Set a default to ensure all newly tested projects are tested under your default organization. If you need to override the default, use the `--org=<ORG_ID>` option.
 
@@ -57,7 +57,7 @@ If you have multiple organizations, you can set a default from the CLI using:
 
 **Note:** You can also use `--org=<orgslugname>.` The `ORG_ID` works in both the CLI and the API. The organization slug name works in the CLI, but not in the API.
 
-For more information see the article [How to select the organization to use in the CLI](https://support.threatcode.io/hc/en-us/articles/360000920738-How-to-select-the-organization-to-use-in-the-CLI)
+For more information see the article [How to select the organization to use in the CLI](https://support.threatcode.github.io/hc/en-us/articles/360000920738-How-to-select-the-organization-to-use-in-the-CLI)
 
 ### `[--file=<file>] or [--f=<file>]`
 

@@ -8,7 +8,7 @@
 
 The `threatcode container test` command tests container images for any known vulnerabilities.
 
-For more information see [Threatcode CLI for container security](https://docs.threatcode.io/products/threatcode-container/threatcode-cli-for-container-security)
+For more information see [Threatcode CLI for container security](https://docs.threatcode.github.io/products/threatcode-container/threatcode-cli-for-container-security)
 
 ## Exit codes
 
@@ -23,7 +23,7 @@ Possible exit codes and their meaning:
 
 You can use environment variables to configure the Threatcode CLI and set variables for connecting with the Threatcode API.
 
-There are environment variables that apply to the container command; see [Configure the Threatcode CLI](https://docs.threatcode.io/features/threatcode-cli/configure-the-threatcode-cli)
+There are environment variables that apply to the container command; see [Configure the Threatcode CLI](https://docs.threatcode.github.io/features/threatcode-cli/configure-the-threatcode-cli)
 
 ## Debug
 
@@ -45,11 +45,11 @@ If you have multiple organizations, you can set a default from the CLI using:
 
 Set a default to ensure all newly tested and monitored projects are tested and monitored under your default organization. If you need to override the default, use the `--org=<ORG_ID>` option.
 
-Default: `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.io/account)
+Default: `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.github.io/account)
 
 Note that you can also use `--org=<orgslugname>`. The `ORG_ID` works in both the CLI and the API. The organization slug name works in the CLI, but not in the API.
 
-For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
+For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.github.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
 
 ### `--file=<FILE_PATH>`
 
@@ -108,7 +108,7 @@ In CLI versions 1.1090.0 (2023-01-24) and higher, Threatcode scans for applicati
 
 In CLI versions 1.962.0 through v1.1089.0, use the `--app-vulns` option with the the `--json` option to see the operating system as well as application vulnerabilities in JSON format in the results.
 
-For more information see [Detecting application vulnerabilities in container images](https://docs.threatcode.io/products/threatcode-container/getting-around-the-threatcode-container-ui/detecting-application-vulnerabilities-in-container-images)
+For more information see [Detecting application vulnerabilities in container images](https://docs.threatcode.github.io/products/threatcode-container/getting-around-the-threatcode-container-ui/detecting-application-vulnerabilities-in-container-images)
 
 ### `--exclude-app-vulns`
 
@@ -116,7 +116,7 @@ Allow disabling scans for app vulnerabilities; in CLI versions 1.1090.0 (2023-01
 
 In earlier releases, cannot be used with `--app-vulns`.
 
-For more information see [Detecting application vulnerabilities in container images](https://docs.threatcode.io/products/threatcode-container/getting-around-the-threatcode-container-ui/detecting-application-vulnerabilities-in-container-images)
+For more information see [Detecting application vulnerabilities in container images](https://docs.threatcode.github.io/products/threatcode-container/getting-around-the-threatcode-container-ui/detecting-application-vulnerabilities-in-container-images)
 
 ### `--nested-jars-depth`
 
@@ -156,4 +156,4 @@ Specify a password to use when connecting to a container registry. This is ignor
 
 `$ threatcode container test app:latest --file=Dockerfile --policy-path=path/to/.threatcode`
 
-For more information and examples see [Advanced Threatcode Container CLI usage](https://docs.threatcode.io/threatcode-container/threatcode-cli-for-container-security/advanced-threatcode-container-cli-usage)
+For more information and examples see [Advanced Threatcode Container CLI usage](https://docs.threatcode.github.io/threatcode-container/threatcode-cli-for-container-security/advanced-threatcode-container-cli-usage)

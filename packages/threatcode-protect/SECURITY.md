@@ -4,9 +4,9 @@ We at Threatcode value the security community and believe that responsible discl
 
 If you believe you have found a security vulnerability on Threatcode, we encourage you to let us know right away. We will investigate all legitimate reports and do our best to quickly fix the problem. Before reporting though, please review our responsible disclosure policy, and those things that should not be reported.
 
-Submit your report to security@threatcode.io (one issue per report) and respond to the report with any updates. Please do not contact employees directly or through other channels about a report.
+Submit your report to security@threatcode.github.io (one issue per report) and respond to the report with any updates. Please do not contact employees directly or through other channels about a report.
 
-Report security bugs in third-party modules to the person or team maintaining the module. You can also report a vulnerability through our [Threatcode Vulnerability Disclosure](https://docs.google.com/a/threatcode.io/forms/d/e/1FAIpQLSemwgWZ0JgK1ZULKhy9DZCQ5KulbLEldvmokAuRtt-_nrqNlA/viewform) program.
+Report security bugs in third-party modules to the person or team maintaining the module. You can also report a vulnerability through our [Threatcode Vulnerability Disclosure](https://docs.google.com/a/threatcode.github.io/forms/d/e/1FAIpQLSemwgWZ0JgK1ZULKhy9DZCQ5KulbLEldvmokAuRtt-_nrqNlA/viewform) program.
 
 ### Responsible Disclosure Policy
 
@@ -18,4 +18,4 @@ We ask that:
 - You do not exploit a security issue you discover for any reason. (This includes demonstrating additional risk, such as attempted compromise of sensitive company data or probing for additional issues).
 - You do not violate any other applicable laws or regulations.
 
-Find out more about our [security policy](https://threatcode.io/docs/security) and [Bug Bounty program](https://threatcode.io/docs/security#threatcode-s-vulnerability-disclosure-program)
+Find out more about our [security policy](https://threatcode.github.io/docs/security) and [Bug Bounty program](https://threatcode.github.io/docs/security#threatcode-s-vulnerability-disclosure-program)

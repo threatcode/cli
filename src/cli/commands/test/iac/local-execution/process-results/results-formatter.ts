@@ -100,7 +100,7 @@ function formatScanResult(
       severity: policy.severity,
       lineNumber,
       documentation: !isGeneratedByCustomRule
-        ? `https://threatcode.io/security-rules/${policy.publicId}`
+        ? `https://threatcode.github.io/security-rules/${policy.publicId}`
         : undefined,
       isGeneratedByCustomRule,
     };
@@ -168,7 +168,7 @@ export class FailedToFormatResults extends CustomError {
     this.code = IaCErrorCodes.FailedToFormatResults;
     this.strCode = getErrorStringCode(this.code);
     this.userMessage =
-      'We failed printing the results, please contact support@threatcode.io';
+      'We failed printing the results, please contact support@threatcode.github.io';
   }
 }
 

@@ -11,7 +11,7 @@ export async function sleep(ms: number): Promise<void> {
 export const reTryMessage =
   'Tip: Re-run in debug mode to see more information: DEBUG=*threatcode* <COMMAND>';
 export const contactSupportMessage =
-  'If the issue persists contact support@threatcode.io';
+  'If the issue persists contact support@threatcode.github.io';
 
 export function testPlatformSupport() {
   const supportedPlatforms = [
@@ -33,8 +33,8 @@ export function testPlatformSupport() {
       ' The current platform (' +
       currentPlatform +
       ') is not supported by Threatcode.\n' +
-      ' You may want to consider using Docker to run Threatcode, for details see: https://docs.threatcode.io/threatcode-cli/install-the-threatcode-cli#threatcode-cli-in-a-docker-image\n' +
-      ' If you experience errors please reach out to support@threatcode.io.\n' +
+      ' You may want to consider using Docker to run Threatcode, for details see: https://docs.threatcode.github.io/threatcode-cli/install-the-threatcode-cli#threatcode-cli-in-a-docker-image\n' +
+      ' If you experience errors please reach out to support@threatcode.github.io.\n' +
       '-----------------------------------------------------------------------';
 
     alerts.registerAlerts([

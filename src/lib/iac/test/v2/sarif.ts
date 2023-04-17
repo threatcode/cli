@@ -26,7 +26,7 @@ export function convertEngineToSarifResults(scanResult: TestOutput): sarif.Log {
       fullName: 'Threatcode Infrastructure as Code',
       version: getVersion(),
       informationUri:
-        'https://docs.threatcode.io/products/threatcode-infrastructure-as-code',
+        'https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code',
       rules: extractReportingDescriptor(scanResult.results),
     },
   };

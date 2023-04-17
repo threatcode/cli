@@ -200,7 +200,7 @@ export class FailedToPullCustomBundleError extends CustomError {
     this.userMessage =
       `${message ? message + ' ' : ''}` +
       '\nWe were unable to download the custom bundle to the disk. Please ensure access to the remote Registry and validate you have provided all the right parameters.' +
-      '\nSee documentation on troubleshooting: https://docs.threatcode.io/products/threatcode-infrastructure-as-code/custom-rules/use-IaC-custom-rules-with-CLI/using-a-remote-custom-rules-bundle#troubleshooting';
+      '\nSee documentation on troubleshooting: https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code/custom-rules/use-IaC-custom-rules-with-CLI/using-a-remote-custom-rules-bundle#troubleshooting';
   }
 }
 

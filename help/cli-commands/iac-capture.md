@@ -12,7 +12,7 @@ The `threatcode iac capture` command generates a mapping artifact that contains 
 
 Threatcode uses this information to link Cloud issues to their originating IaC files. The links can be viewed in the Threatcode Web UI.
 
-For more information, see [Fix Cloud issues in IaC](https://docs.threatcode.io/scan-cloud-deployment/threatcode-cloud/threatcode-cloud-issues/fix-cloud-issues-in-iac)
+For more information, see [Fix Cloud issues in IaC](https://docs.threatcode.github.io/scan-cloud-deployment/threatcode-cloud/threatcode-cloud-issues/fix-cloud-issues-in-iac)
 
 For a list of related commands see the [threatcode iac](iac.md) help; `iac --help`
 
@@ -25,7 +25,7 @@ Possible exit codes and their meaning:
 
 ## Configure the Threatcode CLI
 
-You can use environment variables and set variables for connecting with the Threatcode API; see [Configure the Threatcode CLI](https://docs.threatcode.io/threatcode-cli/configure-the-threatcode-cli)
+You can use environment variables and set variables for connecting with the Threatcode API; see [Configure the Threatcode CLI](https://docs.threatcode.github.io/threatcode-cli/configure-the-threatcode-cli)
 
 ## Debug
 
@@ -35,11 +35,11 @@ Use the `-d` option to output the debug logs.
 
 ### `--org=<ORG_ID>`
 
-Specify the `<ORG_ID>` to run Threatcode commands tied to a specific organization. Overrides the default `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.io/account)
+Specify the `<ORG_ID>` to run Threatcode commands tied to a specific organization. Overrides the default `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.github.io/account)
 
 Note that you can also use `--org=<orgslugname>`. The `ORG_ID` works in both the CLI and the API. The organization slug name works in the CLI, but not in the API.
 
-For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
+For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.github.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
 
 ### `--stdin`
 

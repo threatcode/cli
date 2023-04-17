@@ -241,7 +241,7 @@ function isLocalCodeEngine(sastSettings: SastSettings): boolean {
 function validateLocalCodeEngineUrl(localCodeEngineUrl: string): void {
   if (localCodeEngineUrl.length === 0) {
     throw new MissingConfigurationError(
-      'Threatcode Code Local Engine. Refer to our docs on https://docs.threatcode.io/products/threatcode-code/deployment-options/threatcode-code-local-engine/cli-and-ide to learn more',
+      'Threatcode Code Local Engine. Refer to our docs on https://docs.threatcode.github.io/products/threatcode-code/deployment-options/threatcode-code-local-engine/cli-and-ide to learn more',
     );
   }
 }

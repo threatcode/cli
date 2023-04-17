@@ -7,14 +7,14 @@
   - Threatcode REST API had their own envvars to be set
 
   And API URL itself could (currently) point to multiple places
-  - https://threatcode.io/api/v1 (old default)
-  - https://threatcode.io/api
-  - https://app.threatcode.io/api
-  - https://app.threatcode.io/api/v1
-  - https://api.threatcode.io/v1
+  - https://threatcode.github.io/api/v1 (old default)
+  - https://threatcode.github.io/api
+  - https://app.threatcode.github.io/api
+  - https://app.threatcode.github.io/api/v1
+  - https://api.threatcode.github.io/v1
 
   For Threatcode REST API it's a bit simpler:
-  - https://api.threatcode.io/rest
+  - https://api.threatcode.github.io/rest
 
 
   There are also other URLs - one for the threatcode auth command, one for Threatcode Code Proxy
@@ -140,7 +140,7 @@ export function getRestApiUrl(
   parsedBaseUrl.pathname = '/rest';
 
   if (parsedBaseUrl.host?.startsWith('app.')) {
-    // Rewrite app.threatcode.io/ to api.threatcode.io/rest
+    // Rewrite app.threatcode.github.io/ to api.threatcode.github.io/rest
     parsedBaseUrl.host = parsedBaseUrl.host.replace(/^app\./, 'api.');
   } else if (
     // Ignore localhosts and URLs with api. already defined
@@ -182,8 +182,8 @@ export function getHiddenApiUrl(restUrl: string): string {
 }
 
 export function getRootUrl(apiUrlString: string): string {
-  // based on https://docs.threatcode.io/threatcode-processes/data-residency-at-threatcode#what-regions-are-available the pattern is as follows
-  // https://app.[region.]threatcode.io
+  // based on https://docs.threatcode.github.io/threatcode-processes/data-residency-at-threatcode#what-regions-are-available the pattern is as follows
+  // https://app.[region.]threatcode.github.io
   // given an api url that starts with api means, that we can replace "api" by "app".
 
   const apiUrl = new URL(apiUrlString);

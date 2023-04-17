@@ -41,7 +41,7 @@ export async function validateFixCommandIsSupported(
           options.org ? ` for org '${options.org}'` : ''
         }.`,
       ) +
-      '\nSee documentation on how to enable this beta feature: https://docs.threatcode.io/threatcode-cli/fix-vulnerabilities-from-the-cli/automatic-remediation-with-threatcode-fix#enabling-threatcode-fix';
+      '\nSee documentation on how to enable this beta feature: https://docs.threatcode.github.io/threatcode-cli/fix-vulnerabilities-from-the-cli/automatic-remediation-with-threatcode-fix#enabling-threatcode-fix';
     const unsupportedError = new Error(threatcodeFixErrorMessage);
     throw unsupportedError;
   }

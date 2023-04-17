@@ -10,7 +10,7 @@ The `threatcode iac update-exclude-policy` generates exclude policy rules to be 
 
 For a list of related commands see the [threatcode iac](iac.md) help; `iac --help`
 
-For more information see [Ignore resources](https://docs.threatcode.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/ignore-resources)
+For more information see [Ignore resources](https://docs.threatcode.github.io/products/threatcode-infrastructure-as-code/detect-drift-and-manually-created-resources/ignore-resources)
 
 ## Exit codes
 
@@ -21,7 +21,7 @@ Possible exit codes and their meaning:
 
 ## Configure the Threatcode CLI
 
-You can use environment variables to configure the Threatcode CLI and set variables for connecting with the Threatcode API. See [Configure the Threatcode CLI](https://docs.threatcode.io/threatcode-cli/configure-the-threatcode-cli)
+You can use environment variables to configure the Threatcode CLI and set variables for connecting with the Threatcode API. See [Configure the Threatcode CLI](https://docs.threatcode.github.io/threatcode-cli/configure-the-threatcode-cli)
 
 ## Debug
 

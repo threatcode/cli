@@ -40,6 +40,6 @@ export class FailedToGetIacOrgSettingsError extends CustomError {
     this.code = IaCErrorCodes.FailedToGetIacOrgSettingsError;
     this.strCode = getErrorStringCode(this.code);
     this.userMessage =
-      'We failed to fetch your organization settings, including custom severity overrides for infrastructure-as-code policies. Please run the command again with the `-d` flag and contact support@threatcode.io with the contents of the output.';
+      'We failed to fetch your organization settings, including custom severity overrides for infrastructure-as-code policies. Please run the command again with the `-d` flag and contact support@threatcode.github.io with the contents of the output.';
   }
 }

@@ -239,13 +239,13 @@ function displayRemediation(exploitType: ExploitType) {
   switch (exploitType) {
     case 'Log4Shell':
       console.log(`\nWe highly recommend fixing this vulnerability. If it cannot be fixed by upgrading, see mitigation information here:
-      \t- https://security.threatcode.io/vuln/THREATCODE-JAVA-ORGAPACHELOGGINGLOG4J-2314720
-      \t- https://threatcode.io/blog/log4shell-remediation-cheat-sheet/\n`);
+      \t- https://security.threatcode.github.io/vuln/THREATCODE-JAVA-ORGAPACHELOGGINGLOG4J-2314720
+      \t- https://threatcode.github.io/blog/log4shell-remediation-cheat-sheet/\n`);
       break;
 
     case 'DoS':
       console.log(`\nWe recommend fixing this vulnerability by upgrading to a later version. To learn more about this vulnerability, see:
-      \t- https://security.threatcode.io/vuln/THREATCODE-JAVA-ORGAPACHELOGGINGLOG4J-2321524\n`);
+      \t- https://security.threatcode.github.io/vuln/THREATCODE-JAVA-ORGAPACHELOGGINGLOG4J-2321524\n`);
       break;
 
     default:

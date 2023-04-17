@@ -1,19 +1,19 @@
 # @threatcode/protect
 
 [![npm](https://img.shields.io/npm/v/@threatcode/protect)](https://www.npmjs.com/package/@threatcode/protect)
-[![Known Vulnerabilities](https://threatcode.io/test/github/threatcode/threatcode/badge.svg)](https://threatcode.io/test/github/threatcode/threatcode)
+[![Known Vulnerabilities](https://threatcode.github.io/test/github/threatcode/threatcode/badge.svg)](https://threatcode.github.io/test/github/threatcode/threatcode)
 
-![Threatcode](https://threatcode.io/style/asset/logo/threatcode-print.svg)
+![Threatcode](https://threatcode.github.io/style/asset/logo/threatcode-print.svg)
 
-Patch vulnerable code in your project's dependencies. This package is officially maintained by [Threatcode](https://threatcode.io).
+Patch vulnerable code in your project's dependencies. This package is officially maintained by [Threatcode](https://threatcode.github.io).
 
 ## Usage
 
-You don't typically need to add the @threatcode/protect dependency manually. It'll be introduced when it's needed as part of [Threatcode's Fix PR service](https://support.threatcode.io/hc/en-us/articles/360011484018-Fixing-vulnerabilities).
+You don't typically need to add the @threatcode/protect dependency manually. It'll be introduced when it's needed as part of [Threatcode's Fix PR service](https://support.threatcode.github.io/hc/en-us/articles/360011484018-Fixing-vulnerabilities).
 
 To enable patches in your Fix PRs:
 
-- Visit https://app.threatcode.io
+- Visit https://app.threatcode.github.io
 - Go to "Org Settings" > "Integrations"
 - Choose "Edit Settings" under your SCM integration.
 - Under the "Fix Pull Request" section, ensure patches are enabled.

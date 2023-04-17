@@ -168,6 +168,6 @@ export class UnsupportedFileTypeError extends CustomError {
     super('Unsupported file extension');
     this.code = IaCErrorCodes.UnsupportedFileTypeError;
     this.strCode = getErrorStringCode(this.code);
-    this.userMessage = `Unable to process the file with extension ${fileType}. Supported file extensions are tf, yml, yaml & json.\nMore information can be found by running \`threatcode iac test --help\` or through our documentation:\nhttps://support.threatcode.io/hc/en-us/articles/360012429477-Test-your-Kubernetes-files-with-our-CLI-tool\nhttps://support.threatcode.io/hc/en-us/articles/360013723877-Test-your-Terraform-files-with-our-CLI-tool`;
+    this.userMessage = `Unable to process the file with extension ${fileType}. Supported file extensions are tf, yml, yaml & json.\nMore information can be found by running \`threatcode iac test --help\` or through our documentation:\nhttps://support.threatcode.github.io/hc/en-us/articles/360012429477-Test-your-Kubernetes-files-with-our-CLI-tool\nhttps://support.threatcode.github.io/hc/en-us/articles/360013723877-Test-your-Terraform-files-with-our-CLI-tool`;
   }
 }

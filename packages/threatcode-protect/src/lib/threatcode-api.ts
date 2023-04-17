@@ -1,5 +1,5 @@
 export function getApiBaseUrl(): string {
-  let apiBaseUrl = 'https://threatcode.io/api';
+  let apiBaseUrl = 'https://threatcode.github.io/api';
   if (process.env.THREATCODE_API) {
     if (process.env.THREATCODE_API.endsWith('/api')) {
       apiBaseUrl = process.env.THREATCODE_API;
@@ -8,7 +8,7 @@ export function getApiBaseUrl(): string {
       apiBaseUrl = process.env.THREATCODE_API.replace('/v1', '');
     } else {
       console.warn(
-        'Malformed THREATCODE_API value. Using default: https://threatcode.io/api',
+        'Malformed THREATCODE_API value. Using default: https://threatcode.github.io/api',
       );
     }
   }

@@ -8,7 +8,7 @@
 
 Threatcode Apps are integrations that extend the functionality of the Threatcode platform. They provide you with an opportunity to mould your Threatcode experience to suit your specific needs.
 
-[For more information see our user docs](https://docs.threatcode.io/features/integrations/threatcode-apps)
+[For more information see our user docs](https://docs.threatcode.github.io/features/integrations/threatcode-apps)
 
 ## Commands
 
@@ -42,7 +42,7 @@ A comma separated list of redirect URIs. This will form a list of allowed redire
 ### `--scopes=<SCOPES>`
 
 (Required for the `create` command)
-A comma separated list of scopes required by your Threatcode App. This will form a list of scopes that your app is allowed to request during authorization. You can read more about the allowed scopes in our [docs](https://docs.threatcode.io/threatcode-apps/getting-started-with-threatcode-apps/create-an-app-via-the-api#requesting-scopes).
+A comma separated list of scopes required by your Threatcode App. This will form a list of scopes that your app is allowed to request during authorization. You can read more about the allowed scopes in our [docs](https://docs.threatcode.github.io/threatcode-apps/getting-started-with-threatcode-apps/create-an-app-via-the-api#requesting-scopes).
 
 ## Examples
 

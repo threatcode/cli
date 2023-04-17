@@ -58,7 +58,7 @@ async function fetch(): Promise<Buffer> {
   return policyEngineDataBuffer;
 }
 
-export const policyEngineUrl = `https://static.threatcode.io/cli/iac/test/v${policyEngineReleaseVersion}/${policyEngineFileName}`;
+export const policyEngineUrl = `https://static.threatcode.github.io/cli/iac/test/v${policyEngineReleaseVersion}/${policyEngineFileName}`;
 
 export class FailedToDownloadPolicyEngineError extends CustomError {
   constructor() {

@@ -190,6 +190,6 @@ export class FailedToExtractResourcesInTerraformPlanError extends CustomError {
     this.code = IaCErrorCodes.FailedToExtractResourcesInTerraformPlanError;
     this.strCode = getErrorStringCode(this.code);
     this.userMessage =
-      'We failed to extract resource changes from the Terraform plan file, please contact support@threatcode.io, if possible with a redacted version of the file';
+      'We failed to extract resource changes from the Terraform plan file, please contact support@threatcode.github.io, if possible with a redacted version of the file';
   }
 }

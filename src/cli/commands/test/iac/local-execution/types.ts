@@ -158,7 +158,7 @@ export interface PolicyMetadata {
   type?: string;
   subType: string;
   title: string;
-  documentation?: string; // e.g. "https://threatcode.io/security-rules/THREATCODE-CC-K8S-2",
+  documentation?: string; // e.g. "https://threatcode.github.io/security-rules/THREATCODE-CC-K8S-2",
   isGeneratedByCustomRule?: boolean;
   // Legacy field, still included in WASM eval output, but not in use. (not included in new policies)
   description?: string;

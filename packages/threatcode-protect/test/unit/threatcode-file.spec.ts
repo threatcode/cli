@@ -4,7 +4,7 @@ describe('extractPatchMetadata', () => {
   describe('extracts a single direct dependency', () => {
     it('without quotes on package path', () => {
       const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -24,7 +24,7 @@ patch:
 
     it('with single quotes on package path', () => {
       const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -44,7 +44,7 @@ patch:
 
     it('with double quotes on package path', () => {
       const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -64,7 +64,7 @@ patch:
 
     it('with single quotes on vulnId', () => {
       const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -84,7 +84,7 @@ patch:
 
     it('with double quotes on vulnId', () => {
       const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -104,7 +104,7 @@ patch:
 
     it('with carriage returns in line endings', () => {
       const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -128,7 +128,7 @@ patch:
   describe('extracts a transitive dependency', () => {
     it('without quotes on package path', () => {
       const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -148,7 +148,7 @@ patch:
 
     it('with single quotes on package path', () => {
       const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -168,7 +168,7 @@ patch:
 
     it('with double quotes on package path', () => {
       const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -189,7 +189,7 @@ patch:
 
   it('extracts multiple transitive dependencies', () => {
     const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -217,7 +217,7 @@ patch:
 
   it('extracts nothing from an empty patch section', () => {
     const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -229,7 +229,7 @@ patch:
 
   it('extracts nothing from a missing patch section', () => {
     const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 `;
@@ -239,7 +239,7 @@ ignore: {}
 
   it('throws when there are no package names for a vulnId in the patch section', () => {
     const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
@@ -256,7 +256,7 @@ patch:
 
   it('throws when there is more than one package name for a vulnId in the patch section', () => {
     const dotThreatcodeFileContents = `
-# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+# Threatcode (https://threatcode.github.io) policy file, patches or ignores known vulnerabilities.
 version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability

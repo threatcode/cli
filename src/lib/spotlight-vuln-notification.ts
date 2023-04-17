@@ -54,7 +54,7 @@ export function notificationForSpotlightVulns(
             EOL +
             `  - ${config.PUBLIC_VULN_DB_URL}/vuln/THREATCODE-JAVA-ORGAPACHELOGGINGLOG4J-2314720` +
             EOL +
-            `  - https://threatcode.io/blog/log4shell-remediation-cheat-sheet/` +
+            `  - https://threatcode.github.io/blog/log4shell-remediation-cheat-sheet/` +
             EOL;
         }
       }

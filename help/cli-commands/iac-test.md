@@ -10,7 +10,7 @@ The `threatcode iac test` command tests for any known security issue.
 
 For a list of related commands see the [threatcode iac](iac.md) help; `iac --help`
 
-For more information see [Threatcode CLI for Infrastructure as Code](https://docs.threatcode.io/scan-cloud-deployment/threatcode-infrastructure-as-code/threatcode-cli-for-infrastructure-as-code)
+For more information see [Threatcode CLI for Infrastructure as Code](https://docs.threatcode.github.io/scan-cloud-deployment/threatcode-infrastructure-as-code/threatcode-cli-for-infrastructure-as-code)
 
 ## Exit codes
 
@@ -23,7 +23,7 @@ Possible exit codes and their meaning:
 
 ## Configure the Threatcode CLI
 
-You can use environment variables to configure the Threatcode CLI and set variables for connecting with the Threatcode API. See [Configure the Threatcode CLI](https://docs.threatcode.io/threatcode-cli/configure-the-threatcode-cli)
+You can use environment variables to configure the Threatcode CLI and set variables for connecting with the Threatcode API. See [Configure the Threatcode CLI](https://docs.threatcode.github.io/threatcode-cli/configure-the-threatcode-cli)
 
 ## Debug
 
@@ -49,15 +49,15 @@ If you have multiple organizations, you can set a default from the CLI using:
 
 Set a default to ensure all newly tested projects are tested under your default organization. If you need to override the default, use the `--org=<ORG_ID>` option.
 
-Default: `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.io/account)
+Default: `<ORG_ID>` that is the current preferred organization in your [Account settings](https://app.threatcode.github.io/account)
 
 Note that you can also use `--org=<orgslugname>`. The `ORG_ID` works in both the CLI and the API. The organization slug name works in the CLI, but not in the API.
 
-For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
+For more information see the article [How to select the organization to use in the CLI](https://docs.threatcode.github.io/threatcode-cli/test-for-vulnerabilities/how-to-select-the-organization-to-use-in-the-cli)
 
 ### `--ignore-policy`
 
-Ignore all set policies, the current policy in the `.threatcode` file, org level ignores, and the project policy on threatcode.io.
+Ignore all set policies, the current policy in the `.threatcode` file, org level ignores, and the project policy on threatcode.github.io.
 
 ### `--policy-path=<PATH_TO_POLICY_FILE>`
 
@@ -87,7 +87,7 @@ Save test output in SARIF format directly to the \<OUTPUT_FILE_PATH> file, regar
 
 This is especially useful if you want to display the human-readable test output using stdout and at the same time save the SARIF format output to a file.
 
-Note: If you use an option that sets project attributes and your role lacks permission to edit project attributes the `iac test` command fails. For instructions on how to proceed see [Editing project attributes from the Threatcode CLI](https://docs.threatcode.io/features/user-and-group-management/managing-users-and-permissions/managing-permissions#editing-project-attributes-from-the-threatcode-cli)
+Note: If you use an option that sets project attributes and your role lacks permission to edit project attributes the `iac test` command fails. For instructions on how to proceed see [Editing project attributes from the Threatcode CLI](https://docs.threatcode.github.io/features/user-and-group-management/managing-users-and-permissions/managing-permissions#editing-project-attributes-from-the-threatcode-cli)
 
 ### `--project-business-criticality=<BUSINESS_CRITICALITY>[,<BUSINESS_CRITICALITY>]...>`
 
@@ -109,7 +109,7 @@ Set the project environment project attribute to one or more values (comma-separ
 
 Allowed values: `frontend`, `backend`, `internal`, `external`, `mobile`, `saas`, `onprem`, `hosted`, `distributed`
 
-For more information see [Project attributes](https://docs.threatcode.io/manage-issues/introduction-to-threatcode-projects/project-attributes)
+For more information see [Project attributes](https://docs.threatcode.github.io/manage-issues/introduction-to-threatcode-projects/project-attributes)
 
 This option is not supported for Integrated IaC (Limited Availability).
 
@@ -121,7 +121,7 @@ Set the project lifecycle project attribute to one or more values (comma-separat
 
 Allowed values: `production`, `development`, `sandbox`
 
-For more information see [Project attributes](https://docs.threatcode.io/manage-issues/introduction-to-threatcode-projects/project-attributes)
+For more information see [Project attributes](https://docs.threatcode.github.io/manage-issues/introduction-to-threatcode-projects/project-attributes)
 
 This option is not supported for Integrated IaC (Limited Availability).
 
@@ -137,7 +137,7 @@ To clear the project tags set `--project-tags=`
 
 This option is not supported for Integrated IaC (Limited Availability).
 
-For more information including allowable characters see [Project tags](https://docs.threatcode.io/manage-issues/introduction-to-threatcode-projects/project-tags)
+For more information including allowable characters see [Project tags](https://docs.threatcode.github.io/manage-issues/introduction-to-threatcode-projects/project-tags)
 
 ### `--remote-repo-url=<URL>`
 
@@ -212,7 +212,7 @@ Example:
 
 ### `--threatcode-cloud-environment=<ENVIRONMENT_ID>`
 
-Use the last scan from your Threatcode Cloud Environment to suppress issues. For more information, see [Adding cloud context to your IaC test](https://docs.threatcode.io/scan-cloud-deployment/threatcode-infrastructure-as-code/integrated-infrastructure-as-code/adding-cloud-context-to-your-iac-test)
+Use the last scan from your Threatcode Cloud Environment to suppress issues. For more information, see [Adding cloud context to your IaC test](https://docs.threatcode.github.io/scan-cloud-deployment/threatcode-infrastructure-as-code/integrated-infrastructure-as-code/adding-cloud-context-to-your-iac-test)
 
 This option is only supported for Integrated IaC (Limited Availability).
 
@@ -222,7 +222,7 @@ Example:
 
 ### `--cloud-context=<ENVIRONMENT>`
 
-Scan your cloud environment and use the result to suppress issues. For information on how to authenticate with your cloud provider, see [Adding cloud context to your IaC test](https://docs.threatcode.io/scan-cloud-deployment/threatcode-infrastructure-as-code/integrated-infrastructure-as-code/adding-cloud-context-to-your-iac-test)
+Scan your cloud environment and use the result to suppress issues. For information on how to authenticate with your cloud provider, see [Adding cloud context to your IaC test](https://docs.threatcode.github.io/scan-cloud-deployment/threatcode-infrastructure-as-code/integrated-infrastructure-as-code/adding-cloud-context-to-your-iac-test)
 
 This option is only supported for Integrated IaC (Limited Availability).
 
@@ -232,7 +232,7 @@ Example:
 
 ## Examples for threatcode iac test command
 
-For more information see [Threatcode CLI for Infrastructure as Code](https://docs.threatcode.io/scan-cloud-deployment/threatcode-infrastructure-as-code/threatcode-cli-for-infrastructure-as-code)
+For more information see [Threatcode CLI for Infrastructure as Code](https://docs.threatcode.github.io/scan-cloud-deployment/threatcode-infrastructure-as-code/threatcode-cli-for-infrastructure-as-code)
 
 ### Test a CloudFormation file
 

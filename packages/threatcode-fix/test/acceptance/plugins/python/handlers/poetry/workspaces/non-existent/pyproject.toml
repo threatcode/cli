@@ -2,7 +2,7 @@
 name = "fails-to-lock"
 version = "0.1.0"
 description = ""
-authors = ["ghe <lili@threatcode.io>"]
+authors = ["ghe <lili@threatcode.github.io>"]
 
 [tool.poetry.dependencies]
 python = "*"

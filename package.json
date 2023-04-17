@@ -56,7 +56,7 @@
     "container",
     "scanning"
   ],
-  "author": "threatcode.io",
+  "author": "threatcode.github.io",
   "license": "Apache-2.0",
   "dependencies": {
     "@open-policy-agent/opa-wasm": "^1.6.0",

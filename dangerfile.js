@@ -105,7 +105,7 @@ if (danger.github && danger.github.pr) {
 
   if (modifiedHelp || createdHelp) {
     warn(
-      'Please make changes to `threatcode help` text in [Gitbook](https://docs.threatcode.io/threatcode-cli/commands). Changes will be automatically synchronised to Threatcode CLI as a [scheduled PR](https://github.com/threatcode/threatcode/actions/workflows/sync-cli-help-to-user-docs.yml).\nFor more information, see: [`help/README.md`](https://github.com/threatcode/threatcode/tree/master/help/README.md).',
+      'Please make changes to `threatcode help` text in [Gitbook](https://docs.threatcode.github.io/threatcode-cli/commands). Changes will be automatically synchronised to Threatcode CLI as a [scheduled PR](https://github.com/threatcode/threatcode/actions/workflows/sync-cli-help-to-user-docs.yml).\nFor more information, see: [`help/README.md`](https://github.com/threatcode/threatcode/tree/master/help/README.md).',
     );
   }
 }

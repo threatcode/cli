@@ -2,9 +2,9 @@
 
 Threatcode CLI scans and monitors your projects for security vulnerabilities and license issues.
 
-For more information visit the [Threatcode website](https://threatcode.io)
+For more information visit the [Threatcode website](https://threatcode.github.io)
 
-For details see the [CLI documentation](https://docs.threatcode.io/features/threatcode-cli)
+For details see the [CLI documentation](https://docs.threatcode.github.io/features/threatcode-cli)
 
 ## How to get started
 
@@ -70,4 +70,4 @@ Use `-d` option to output the debug logs.
 
 ## Configure the Threatcode CLI
 
-You can use environment variables to configure the Threatcode CLI and also set variables to configure the Threatcode CLI to connect with the Threatcode API. See [Configure the Threatcode CLI](https://docs.threatcode.io/features/threatcode-cli/configure-the-threatcode-cli)
+You can use environment variables to configure the Threatcode CLI and also set variables to configure the Threatcode CLI to connect with the Threatcode API. See [Configure the Threatcode CLI](https://docs.threatcode.github.io/features/threatcode-cli/configure-the-threatcode-cli)
