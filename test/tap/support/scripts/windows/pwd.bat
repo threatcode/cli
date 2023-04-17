@@ -1,3 +1,0 @@
-@ECHO off
-CD
-EXIT /B 0
