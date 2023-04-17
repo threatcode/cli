@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="https://threatcode.github.io/style/asset/logo/threatcode-print.svg" />
-</p>
 
 # Threatcode CLI
 
