@@ -1,0 +1,16 @@
+{
+  "darwin": {
+    "amd64": "threatcode-macos",
+    "arm64": "threatcode-macos"
+  },
+  "windows": {
+    "amd64": "threatcode-win.exe"
+  },
+  "alpine": {
+    "amd64": "threatcode-alpine"
+  },
+  "linux": {
+    "amd64": "threatcode-linux",
+    "arm64": "threatcode-linux-arm64"
+  }
+}

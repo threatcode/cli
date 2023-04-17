@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0-monorepo",
+  "assets": {
+    "threatcode-alpine": {
+      "url": "https://static.threatcode.io/cli/v1.0.0-monorepo/threatcode-alpine",
+      "sha256": "threatcode-alpine-sha256",
+      "sha256Url": "https://static.threatcode.io/cli/v1.0.0-monorepo/threatcode-alpine.sha256"
+    },
+    "threatcode-linux": {
+      "url": "https://static.threatcode.io/cli/v1.0.0-monorepo/threatcode-linux",
+      "sha256": "threatcode-linux-sha256",
+      "sha256Url": "https://static.threatcode.io/cli/v1.0.0-monorepo/threatcode-linux.sha256"
+    },
+    "threatcode-linux-arm64": {
+      "url": "https://static.threatcode.io/cli/v1.0.0-monorepo/threatcode-linux-arm64",
+      "sha256": "threatcode-linux-arm64-sha256",
+      "sha256Url": "https://static.threatcode.io/cli/v1.0.0-monorepo/threatcode-linux-arm64.sha256"
+    },
+    "threatcode-macos": {
+      "url": "https://static.threatcode.io/cli/v1.0.0-monorepo/threatcode-macos",
+      "sha256": "threatcode-macos-sha256",
+      "sha256Url": "https://static.threatcode.io/cli/v1.0.0-monorepo/threatcode-macos.sha256"
+    },
+    "threatcode-win.exe": {
+      "url": "https://static.threatcode.io/cli/v1.0.0-monorepo/threatcode-win.exe",
+      "sha256": "threatcode-win.exe-sha256",
+      "sha256Url": "https://static.threatcode.io/cli/v1.0.0-monorepo/threatcode-win.exe.sha256"
+    }
+  },
+  "schemaVersion": 1
+}

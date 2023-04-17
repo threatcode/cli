@@ -1,0 +1,18 @@
+$ threatcode-protect --help
+
+NAME
+  @threatcode/protect - Patch vulnerable code in your project's dependencies.
+
+DESCRIPTION
+  You don't typically need to add the @threatcode/protect dependency manually.
+  For more information on how to setup and use @threatcode/protect, visit:
+    https://github.com/threatcode/threatcode/tree/master/packages/threatcode-protect
+
+SYNOPSIS
+  threatcode-protect [<options>]
+
+OPTIONS
+  --help
+    Display this help text.
+  --version
+    Display the current version.

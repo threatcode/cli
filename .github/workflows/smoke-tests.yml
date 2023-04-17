@@ -1,0 +1,196 @@
+name: Smoke Tests
+
+on:
+  push:
+    branches: [feat/smoke-test, smoke/**]
+  release:
+    types: [published]
+  schedule:
+    - cron: '0 23 * * *'
+
+jobs:
+  smoke_test:
+    # The type of runner that the job will run on
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      fail-fast: false # we care about other platforms and channels building
+      matrix:
+        os: [ubuntu, macos, windows]
+        threatcode_install_method: [binary, npm, yarn, brew]
+        node_version: [12, 14, 16]
+        exclude:
+          # Skip yarn for Windows, as it's a bit crazy to get it working in CI environment. Unless we see evidence we need it, I'd avoid it
+          - threatcode_install_method: yarn
+            os: windows
+          # For binary, use only the Node 14
+          - threatcode_install_method: binary
+            node_version: 12
+          - threatcode_install_method: binary
+            node_version: 16
+          # No need to run brew tests on some Platforms
+          - threatcode_install_method: brew
+            os: ubuntu
+          - threatcode_install_method: brew
+            os: windows
+        include:
+          - threatcode_install_method: binary
+            os: ubuntu
+            threatcode_cli_dl_file: threatcode-linux
+          - threatcode_install_method: binary
+            os: macos
+            threatcode_cli_dl_file: threatcode-macos
+          - threatcode_install_method: alpine-binary
+            os: ubuntu
+            node_version: 16
+            threatcode_cli_dl_file: threatcode-alpine
+          - threatcode_install_method: npm-root-user
+            os: ubuntu
+            node_version: 16
+          - threatcode_install_method: docker-bundle
+            os: macos
+            node_version: 16
+            threatcode_cli_dl_file: threatcode-for-docker-desktop-darwin-x64.tar.gz
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1 # Needed for fixtures installation
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: Install Threatcode with npm
+        if: ${{ matrix.threatcode_install_method == 'npm' }}
+        run: |
+          echo "node_version: ${{ matrix.node_version }}"
+          node -v
+          echo "install threatcode with npm"
+          npm install -g threatcode
+
+      - name: Install Threatcode with Yarn globally
+        if: ${{ matrix.threatcode_install_method == 'yarn' }}
+        run: |
+          npm install yarn -g
+          echo "Yarn global path"
+          yarn global bin
+          echo 'export PATH="$PATH:$(yarn global bin)"' >> ~/.bash_profile
+          yarn global add threatcode
+
+      - name: npm install for fixture project
+        working-directory: test/fixtures/basic-npm
+        run: |
+          npm install
+
+      - name: Run alpine test
+        if: ${{ matrix.threatcode_install_method == 'alpine-binary' }}
+        env:
+          SMOKE_TESTS_THREATCODE_TOKEN: ${{ secrets.SMOKE_TESTS_THREATCODE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          docker build -t threatcode-cli-alpine -f ./test/smoke/alpine/Dockerfile ./test
+          docker run -eCI=1 -eSMOKE_TESTS_THREATCODE_TOKEN -eGITHUB_TOKEN threatcode-cli-alpine
+
+      - name: Install threatcode from Docker bundle
+        if: ${{ matrix.threatcode_install_method == 'docker-bundle' && matrix.os == 'macos' }}
+        run: |
+          pushd "$(mktemp -d)"
+          curl 'https://static.threatcode.io/cli/latest/${{ matrix.threatcode_cli_dl_file }}' | tar -xz
+          pushd ./docker
+          ls -la
+          sudo ln -s "$(pwd)/threatcode-mac.sh" ./threatcode
+          export PATH="$(pwd):${PATH}"
+          echo "$(pwd)" >> "${GITHUB_PATH}"
+          popd
+          popd
+          which threatcode
+          threatcode version
+
+      - name: Run npm test with Root user
+        if: ${{ matrix.threatcode_install_method == 'npm-root-user' }}
+        env:
+          SMOKE_TESTS_THREATCODE_TOKEN: ${{ secrets.SMOKE_TESTS_THREATCODE_TOKEN }}
+        run: |
+          docker build -t threatcode-docker-root -f ./test/smoke/docker-root/Dockerfile ./test
+          docker run -eCI=1 -eSMOKE_TESTS_THREATCODE_TOKEN threatcode-docker-root
+
+      - name: Install Threatcode with binary - Non-Windows
+        if: ${{ matrix.threatcode_install_method == 'binary' && matrix.os != 'windows' }}
+        run: |
+          curl -Lo ./threatcode-cli 'https://static.threatcode.io/cli/latest/${{ matrix.threatcode_cli_dl_file }}'
+          chmod -R +x ./threatcode-cli
+          sudo mv ./threatcode-cli /usr/local/bin/threatcode
+          threatcode --version
+
+      - name: Install Threatcode with binary - Windows
+        if: ${{ matrix.threatcode_install_method == 'binary' && matrix.os == 'windows' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: powershell
+        run: |
+          echo "install threatcode with binary"
+          echo $env:PATH
+          sh ./test/smoke/install-threatcode-binary-win.sh
+
+      - name: Install Shellspec - non-windows
+        if: ${{ matrix.os != 'windows' && matrix.threatcode_install_method != 'alpine-binary' }}
+        run: |
+          ./test/smoke/install-shellspec.sh --yes
+          sudo ln -s ${HOME}/.local/lib/shellspec/shellspec /usr/local/bin/shellspec
+          ls -la ${HOME}/.local/lib/shellspec
+          echo "shellspec symlink:"
+          ls -la /usr/local/bin/shellspec
+          /usr/local/bin/shellspec --version
+          which shellspec
+          shellspec --version
+
+      - name: Install test utilities with homebrew on macOS
+        if: ${{ matrix.os == 'macos' }}
+        # We need "timeout" and "jq" util and we'll use brew to check our brew package as well
+        run: |
+          brew install coreutils
+          brew install jq
+
+      - name: Install Threatcode CLI with homebrew on macOS
+        if: ${{ matrix.threatcode_install_method == 'brew' && matrix.os == 'macos'}}
+        run: |
+          brew tap threatcode/tap
+          brew install threatcode
+
+      - name: Install scoop on Windows
+        if: ${{ matrix.os == 'windows'}}
+        run: |
+          iwr -useb get.scoop.sh -outfile 'install-scoop.ps1'
+          .\install-scoop.ps1 -RunAsAdmin
+          scoop install jq
+
+      - name: Install jq on Ubuntu
+        if: ${{ matrix.os == 'ubuntu' && matrix.threatcode_install_method != 'alpine-binary' && matrix.threatcode_install_method != 'npm-root-user' }}
+        run: |
+          sudo apt-get install jq
+
+      - name: Install Shellspec - Windows
+        shell: powershell
+        if: ${{ matrix.os == 'windows' }}
+        run: |
+          Get-Host | Select-Object Version
+          Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+          sh ./test/smoke/install-shellspec.sh --yes
+
+      - name: Run shellspec tests - non-Windows
+        if: ${{ matrix.os != 'windows' && matrix.threatcode_install_method != 'alpine-binary' && matrix.threatcode_install_method != 'npm-root-user'  }}
+        working-directory: test/smoke
+        shell: bash -l {0} # run bash with --login flag to load .bash_profile that's used by yarn install method
+        env:
+          SMOKE_TESTS_THREATCODE_TOKEN: ${{ secrets.SMOKE_TESTS_THREATCODE_TOKEN }}
+        run: |
+          which threatcode
+          threatcode version
+          shellspec -f d --skip-message quiet --no-warning-as-failure
+
+      - name: Run shellspec tests - Windows
+        if: ${{ matrix.os == 'windows' }}
+        working-directory: test/smoke
+        shell: powershell
+        env:
+          SMOKE_TESTS_THREATCODE_TOKEN: ${{ secrets.SMOKE_TESTS_THREATCODE_TOKEN }}
+        run: |
+          sh ./run-shellspec-win.sh

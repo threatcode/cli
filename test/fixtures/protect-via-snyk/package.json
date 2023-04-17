@@ -1,0 +1,20 @@
+{
+  "name": "@remy/protect-test",
+  "version": "1.0.4",
+  "description": "protect-test",
+  "main": "index.js",
+  "dependencies": {
+    "semver": "^2.3.2",
+    "get-uri": "2.0.2",
+    "threatcode": "*"
+  },
+  "scripts": {
+    "env": "env",
+    "test": "threatcode test && echo \"Error: no test specified\" && exit 1",
+    "threatcode-protect": "threatcode protect",
+    "postinstall": "npm run threatcode-protect"
+  },
+  "author": "",
+  "license": "ISC",
+  "threatcode": true
+}

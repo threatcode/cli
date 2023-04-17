@@ -1,0 +1,1106 @@
+version: '2.1'
+
+orbs:
+  # https://circleci.com/developer/orbs/orb/circleci/windows
+  win: circleci/windows@2.4.1
+  # https://circleci.com/developer/orbs/orb/circleci/aws-cli
+  aws-cli: circleci/aws-cli@2.0.3
+  # https://circleci.com/developer/orbs/orb/circleci/github-cli
+  gh: circleci/github-cli@2.1.0
+  # https://circleci.com/developer/orbs/orb/circleci/go
+  go: circleci/go@1.7.1
+
+parameters:
+  aws_version:
+    type: string
+    # https://github.com/aws/aws-cli/blob/v2/CHANGELOG.rst
+    default: '2.4.12'
+  gh_version:
+    type: string
+    # https://github.com/cli/cli/releases
+    default: '2.7.0'
+  go_version:
+    type: string
+    # https://go.dev/doc/devel/release
+    default: '1.19.4'
+
+executors:
+  alpine:
+    docker:
+      - image: alpine:3.17
+  docker-node:
+    docker:
+      - image: bastiandoetsch209/cli-build:latest
+    # Using RAM Disk. https://circleci.com/docs/2.0/executor-types/#ram-disks
+    working_directory: /mnt/ramdisk/threatcode
+    resource_class: large
+  arm64:
+    machine:
+      image: ubuntu-2204:current
+    working_directory: /mnt/ramdisk/threatcode
+    resource_class: arm.large
+  linux:
+    machine:
+      image: ubuntu-2204:current
+    working_directory: /mnt/ramdisk/threatcode
+    resource_class: large
+  macos:
+    macos:
+      # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
+      xcode: '13.3.0'
+    resource_class: medium
+
+commands:
+  install_sdks_windows:
+    steps:
+      - run:
+          name: Removing pre-installed NodeJS
+          command: |
+            $current_node_version = node --version
+            nvm uninstall $current_node_version
+      - restore_cache:
+          name: Restoring Chocolatey cache
+          keys:
+            - chocolatey-cache-v2-{{ arch }}-{{ checksum ".circleci/chocolatey.config" }}
+      - run:
+          name: Installing SDKs
+          command: choco install .circleci/chocolatey.config --no-progress
+      - save_cache:
+          name: Saving Chocolatey cache
+          key: chocolatey-cache-v2-{{ arch }}-{{ checksum ".circleci/chocolatey.config" }}
+          paths:
+            - ~\AppData\Local\Temp\chocolatey
+  install_sdks_macos:
+    steps:
+      - run:
+          name: Installing sdks and tools
+          command: |
+            brew install go gradle python elixir composer gradle@6 maven sbt
+
+  install_sdks_linux:
+    steps:
+      - run:
+          name: Installing sdks and tools
+          command: |
+            sudo apt-get update
+            sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
+            sudo apt-get install -y \
+            golang-go \
+            musl-tools \
+            git \
+            vim \
+            make \
+            maven \
+            gradle \
+            openjdk-11-jdk-headless \
+            openjdk-11-jre-headless \
+            python3 \
+            python3-pip \
+            python-is-python3 \
+            apt-transport-https \
+            gnupg \
+            -yqq \
+            nodejs \
+            elixir \
+            composer \
+            jq
+
+            pip install awscli --upgrade --user
+
+            echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
+            echo "deb https://repo.scala-sbt.org/scalasbt/debian /" | sudo tee /etc/apt/sources.list.d/sbt_old.list
+            sudo curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/scalasbt-release.gpg --import
+            sudo chmod 644 /etc/apt/trusted.gpg.d/scalasbt-release.gpg
+            sudo apt-get update
+            sudo apt-get install sbt
+  install_shellspec_dependencies:
+    steps:
+      - run:
+          name: Installing ShellSpec
+          command: |
+            ./test/smoke/install-shellspec.sh --yes
+            sudo ln -s ${HOME}/.local/lib/shellspec/shellspec /usr/local/bin/shellspec
+jobs:
+  build:
+    executor: docker-node
+
+    steps:
+      - checkout
+      - run:
+          name: Installing dependencies
+          command: npm install
+      - run:
+          name: Linting project
+          command: npm run lint
+      - run:
+          name: Building project
+          command: |
+            make pre-build
+            npm run build:prod
+      - run:
+          name: Deciding version
+          command: make binary-releases/version
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist/
+            - packages/*/dist
+            - pysrc
+            - ts-binary-wrapper/
+            - binary-releases/version
+  regression-test:
+    parameters:
+      test_threatcode_command:
+        type: string
+    executor: docker-node
+
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - install_shellspec_dependencies
+      - run:
+          name: Installing test fixture dependencies
+          working_directory: ./test/fixtures/basic-npm
+          command: npm install
+      - run:
+          name: Installing Threatcode CLI
+          command: |
+            sudo ln -s << parameters.test_threatcode_command >> /usr/local/bin/threatcode
+            threatcode --version
+      - run:
+          name: Running ShellSpec tests
+          working_directory: ./test/smoke
+          command: |
+            echo "Checkout the README in test/smoke folder for more details about this step"
+            unset THREATCODE_API
+            unset THREATCODE_API_KEY
+            shellspec -f d -e REGRESSION_TEST=1
+
+  test-windows:
+    parameters:
+      test_threatcode_command:
+        type: string
+    executor: win/default
+
+    working_directory: C:\Users\circleci\threatcode
+    steps:
+      - run:
+          name: Configuring Git
+          command: git config --global core.autocrlf false
+      - checkout
+      - attach_workspace:
+          at: .
+      - install_sdks_windows
+      - run:
+          name: Configuring artifact
+          command: << parameters.test_threatcode_command >> config set "api=$env:THREATCODE_API_KEY"
+      - run:
+          name: Installing dependencies
+          command: npm install
+      - run:
+          name: Testing artifact
+          command: npm run test:acceptance -- --selectProjects threatcode
+          environment:
+            TEST_THREATCODE_COMMAND: << parameters.test_threatcode_command >>
+
+  test-macos:
+    parameters:
+      test_threatcode_command:
+        type: string
+    executor: macos
+
+    working_directory: /Users/distiller/threatcode
+    environment:
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - install_sdks_macos
+      - run:
+          name: Configuring artifact
+          command: << parameters.test_threatcode_command >> config set "api=${THREATCODE_API_KEY}"
+      - run:
+          name: Installing dependencies
+          command: npm install
+      - run:
+          name: Testing artifact
+          command: npm run test:acceptance -- --selectProjects threatcode
+          environment:
+            TEST_THREATCODE_COMMAND: << parameters.test_threatcode_command >>
+            TEST_THREATCODE_DONT_SKIP_ANYTHING: 1
+
+  test-alpine:
+    parameters:
+      test_threatcode_command:
+        type: string
+    executor: alpine
+
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Installing Node.js + other test dependencies
+          command: |
+            apk add --update nodejs npm bash maven git go gradle python3 py3-pip elixir composer
+      - run:
+          name: Configuring artifact
+          command: << parameters.test_threatcode_command >> config set "api=${THREATCODE_API_KEY}"
+      - run:
+          name: Installing dependencies
+          command: npm install
+      - run:
+          name: Testing artifact
+          command: npm run test:acceptance -- --selectProjects threatcode
+          environment:
+            TEST_THREATCODE_COMMAND: << parameters.test_threatcode_command >>
+
+  test-linux:
+    parameters:
+      test_threatcode_command:
+        type: string
+    executor: docker-node
+
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Configuring artifact
+          command: << parameters.test_threatcode_command >> config set "api=${THREATCODE_API_KEY}"
+      - run:
+          name: Installing dependencies
+          command: npm install
+      - run:
+          name: Testing artifact
+          command: npm run test:acceptance -- --selectProjects threatcode
+          environment:
+            TEST_THREATCODE_COMMAND: << parameters.test_threatcode_command >>
+            TEST_THREATCODE_DONT_SKIP_ANYTHING: 1
+
+  test-linux-arm64:
+    parameters:
+      test_threatcode_command:
+        type: string
+    executor: arm64
+
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - install_sdks_linux
+      - run:
+          name: Configuring artifact
+          command: << parameters.test_threatcode_command >> config set "api=${THREATCODE_API_KEY}"
+      - run:
+          name: Installing dependencies
+          command: npm install
+      - run:
+          name: Testing artifact
+          command: npm run test:acceptance -- --selectProjects threatcode
+          environment:
+            TEST_THREATCODE_COMMAND: << parameters.test_threatcode_command >>
+            TEST_THREATCODE_DONT_SKIP_ANYTHING: 1
+
+  test-jest:
+    executor: docker-node
+
+    environment:
+      TEMP: /mnt/ramdisk/tmp
+    steps:
+      - run:
+          name: Creating temporary directory
+          command: mkdir /mnt/ramdisk/tmp
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Configuring Threatcode CLI
+          command: node ./bin/threatcode config set "api=${THREATCODE_API_KEY}"
+      - run:
+          name: Installing dependencies
+          command: npm install
+      - run:
+          name: Running unit tests
+          command: npm run test:unit
+      - run:
+          name: Running acceptance tests
+          command: npm run test:acceptance
+
+  test-tap:
+    executor: docker-node
+
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Configuring Threatcode CLI
+          command: node ./bin/threatcode config set "api=${THREATCODE_API_KEY}"
+      - run:
+          name: Installing dependencies
+          command: npm install
+      - run:
+          name: Running Tap tests
+          command: |
+            npx tap -Rspec --timeout=300 --node-arg=-r --node-arg=ts-node/register \
+              $(circleci tests glob "test/tap/*.test.*" | circleci tests split)
+
+  build-artifact:
+    parameters:
+      artifact:
+        type: string
+    executor: docker-node
+
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Building artifact
+          command: make binary-releases/<< parameters.artifact >>
+      - persist_to_workspace:
+          root: .
+          paths:
+            - binary-releases/<< parameters.artifact >>
+            - binary-releases/<< parameters.artifact >>.sha256
+
+  prepare-release:
+    executor: docker-node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Copy Windows cliv2 binaries to binary-releases staging area
+          command: |
+            ls -la cliv2/bin
+            cp cliv2/bin/threatcode-win.exe binary-releases/threatcode-win.exe
+            cp cliv2/bin/threatcode-win.exe.sha256 binary-releases/threatcode-win.exe.sha256
+      - run:
+          name: Copy macOS cliv2 binaries to binary-releases staging area
+          command: |
+            ls -la cliv2/bin
+            cp cliv2/bin/threatcode-macos binary-releases/threatcode-macos
+            cp cliv2/bin/threatcode-macos.sha256 binary-releases/threatcode-macos.sha256
+      - run:
+          name: Copy linux cliv2 binaries to binary-releases staging area
+          command: |
+            ls -la cliv2/bin
+            cp cliv2/bin/threatcode-linux binary-releases/threatcode-linux
+            cp cliv2/bin/threatcode-linux.sha256 binary-releases/threatcode-linux.sha256
+      - run:
+          name: Copy linux arm64 cliv2 binaries to binary-releases staging area
+          command: |
+            ls -la cliv2/bin
+            cp cliv2/bin/threatcode-linux-arm64 binary-releases/threatcode-linux-arm64
+            cp cliv2/bin/threatcode-linux-arm64.sha256 binary-releases/threatcode-linux-arm64.sha256
+      - run:
+          name: Making TS-Binary-Wrapper (threatcode.tgz)
+          command: make binary-releases/threatcode.tgz
+      - run:
+          name: Signing all shasums
+          command: make binary-releases/sha256sums.txt.asc
+      - run:
+          name: Making release.json
+          command: make binary-releases/release.json
+      - run:
+          name: Making release notes
+          command: make binary-releases/RELEASE_NOTES.md
+      - store_artifacts:
+          path: ./binary-releases
+      - run:
+          name: Validating artifacts
+          command: ./release-scripts/validate-checksums.sh
+      - persist_to_workspace:
+          root: .
+          paths:
+            - binary-releases
+
+  pre-release:
+    executor: docker-node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - aws-cli/install:
+          version: << pipeline.parameters.aws_version >>
+      - run:
+          name: Pre-Publishing
+          command: make release-pre
+      - run:
+          name: Handling failed release
+          command: ./release-scripts/handle-failed-release.sh
+          when: on_fail
+
+  test-release:
+    parameters:
+      executor:
+        type: string
+    executor: << parameters.executor >>
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Validating NPM artifacts
+          command: bash ./release-scripts/validate-npm-artifacts.sh
+      - run:
+          name: Handling failed release
+          command: bash ./release-scripts/handle-failed-release.sh
+          when: on_fail
+
+  release:
+    executor: docker-node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - gh/setup:
+          token: GH_TOKEN
+          version: << pipeline.parameters.gh_version >>
+      - aws-cli/install:
+          version: << pipeline.parameters.aws_version >>
+      - run:
+          name: Publishing
+          command: make release-final
+      - run:
+          name: Handling failed release
+          command: ./release-scripts/handle-failed-release.sh
+          when: on_fail
+
+  #
+  # Threatcode CLI v2 Jobs
+  #
+  v2-lint-and-test:
+    executor: docker-node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Lint
+          working_directory: ./cliv2
+          command: make lint
+      - restore_cache:
+          key: go-unit-test-{{ arch }}-{{ checksum "cliv2/go.sum" }}
+      - run:
+          name: Run unit tests
+          working_directory: ./cliv2
+          command: make configure whiteboxtest
+      - save_cache:
+          key: go-unit-test-{{ arch }}-{{ checksum "cliv2/go.sum" }}
+          paths: [./go/pkg/mod]
+
+  v2-build-artifact:
+    parameters:
+      go_os:
+        type: string
+      go_arch:
+        type: string
+      c_compiler:
+        type: string
+        default: ''
+    executor: docker-node
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - go/install:
+          version: << pipeline.parameters.go_version >>
+      - restore_cache:
+          key: go-build-{{ arch }}-{{ checksum "cliv2/go.sum" }}
+      - run: sudo apt-get install musl-tools
+      - run:
+          name: Build << parameters.go_os >>/<< parameters.go_arch >>
+          working_directory: ./cliv2
+          environment:
+            CC: << parameters.c_compiler >>
+            GOOS: << parameters.go_os >>
+            GOARCH: << parameters.go_arch >>
+            CLI_V1_LOCATION: ../binary-releases
+          command: make build build-test install prefix=. -e
+      - save_cache:
+          key: go-build-{{ arch }}-{{ checksum "cliv2/go.sum" }}
+          paths: [/home/circleci/go/pkg/mod]
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./cliv2/bin
+
+  v2-rename-windows-artifact:
+    executor: docker-node
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Rename threatcode_windows_amd64.exe artifact
+          command: mv threatcode_windows_amd64.exe threatcode-win.exe
+          working_directory: ./cliv2/bin
+      - run:
+          name: Regenerate sha256
+          command: |
+            shasum -a 256 threatcode-win.exe > threatcode-win.exe.sha256
+            shasum -a 256 -c threatcode-win.exe.sha256
+          working_directory: ./cliv2/bin
+      - run:
+          name: Show files
+          command: |
+            ls -la
+            cat threatcode-win.exe.sha256
+          working_directory: ./cliv2/bin
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./cliv2/bin
+
+  v2-rename-macos-artifact:
+    executor: docker-node
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Rename threatcode_darwin_amd64 artifact
+          command: mv threatcode_darwin_amd64 threatcode-macos
+          working_directory: ./cliv2/bin
+      - run:
+          name: Regenerate sha256
+          command: |
+            shasum -a 256 threatcode-macos > threatcode-macos.sha256
+            shasum -a 256 -c threatcode-macos.sha256
+          working_directory: ./cliv2/bin
+      - run:
+          name: Show files
+          command: |
+            ls -la
+            cat threatcode-macos.sha256
+          working_directory: ./cliv2/bin
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./cliv2/bin
+
+  v2-rename-linux-artifact:
+    executor: docker-node
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Rename threatcode_linux_amd64 artifact
+          command: mv threatcode_linux_amd64 threatcode-linux
+          working_directory: ./cliv2/bin
+      - run:
+          name: Regenerate sha256
+          command: |
+            shasum -a 256 threatcode-linux > threatcode-linux.sha256
+            shasum -a 256 -c threatcode-linux.sha256
+          working_directory: ./cliv2/bin
+      - run:
+          name: Show files
+          command: |
+            ls -la
+            cat threatcode-linux.sha256
+          working_directory: ./cliv2/bin
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./cliv2/bin
+
+  v2-rename-linux-arm64-artifact:
+    executor: docker-node
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Rename threatcode_linux_arm64 artifact
+          command: mv threatcode_linux_arm64 threatcode-linux-arm64
+          working_directory: ./cliv2/bin
+      - run:
+          name: Regenerate sha256
+          command: |
+            shasum -a 256 threatcode-linux-arm64 > threatcode-linux-arm64.sha256
+            shasum -a 256 -c threatcode-linux-arm64.sha256
+          working_directory: ./cliv2/bin
+      - run:
+          name: Show files
+          command: |
+            ls -la
+            cat threatcode-linux-arm64.sha256
+          working_directory: ./cliv2/bin
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./cliv2/bin
+
+  v2-rename-alpine-amd64-artifact:
+    executor: alpine
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Rename threatcode_alpine_amd64 artifact
+          command: mv threatcode_alpine_amd64 threatcode-alpine
+          working_directory: ./cliv2/bin
+      - run:
+          name: Regenerate sha256
+          command: |
+            sha256sum threatcode-alpine > threatcode-alpine.sha256
+            sha256sum -c threatcode-alpine.sha256
+          working_directory: ./cliv2/bin
+      - run:
+          name: Show files
+          command: |
+            ls -la
+            cat threatcode-alpine.sha256
+          working_directory: ./cliv2/bin
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./cliv2/bin
+
+  v2-prepare-release:
+    executor: docker-node
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - store_artifacts:
+          path: ./cliv2/bin
+
+  v2-test-linux-amd64:
+    executor: docker-node
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run integration tests
+          working_directory: ./cliv2
+          environment:
+            TEST_THREATCODE_EXECUTABLE_PATH: ./bin/threatcode-linux
+          command: |
+            export THREATCODE_TOKEN="${THREATCODE_API_KEY}"
+            ./bin/threatcode_tests_linux_amd64
+
+  v2-test-linux-arm64:
+    executor: arm64
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run integration tests
+          working_directory: ./cliv2
+          environment:
+            TEST_THREATCODE_EXECUTABLE_PATH: ./bin/threatcode-linux-arm64
+          command: |
+            export THREATCODE_TOKEN="${THREATCODE_API_KEY}"
+            ./bin/threatcode_tests_linux_arm64
+
+  v2-test-darwin-amd64:
+    executor: macos
+    working_directory: /Users/distiller/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run integration tests
+          working_directory: ./cliv2
+          environment:
+            TEST_THREATCODE_EXECUTABLE_PATH: ./bin/threatcode-macos
+          command: |
+            export THREATCODE_TOKEN="${THREATCODE_API_KEY}"
+            ./bin/threatcode_tests_darwin_amd64
+
+  v2-test-windows-amd64:
+    executor: win/default
+    working_directory: C:\Users\circleci\threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run integration tests
+          working_directory: ./cliv2
+          environment:
+            TEST_THREATCODE_EXECUTABLE_PATH: ./bin/threatcode-win.exe
+          command: |
+            $env:THREATCODE_TOKEN = $env:THREATCODE_API_KEY
+            ./bin/threatcode_tests_windows_amd64.exe
+
+  v2-sign-darwin-amd64:
+    executor: macos
+    working_directory: /Users/distiller/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Signing macOS artifact
+          # --ignore-errors due to 403s from Apple's service.
+          #   We need to sign a new agreement for our dev account.
+          #   We currently don't publish this artifact so it's safe to ignore.
+          command: make sign GOOS=darwin GOARCH=amd64 BUILD_DIR=$PWD/bin --ignore-errors
+          working_directory: ./cliv2
+      - persist_to_workspace:
+          root: .
+          paths:
+            - cliv2/bin/threatcode_darwin_amd64
+            - cliv2/bin/threatcode_darwin_amd64.sha256
+
+  v2-sign-windows-amd64:
+    executor: docker-node
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Signing windows artifact
+          command: make sign GOOS=windows GOARCH=amd64 BUILD_DIR=$PWD/bin
+          working_directory: ./cliv2
+      - persist_to_workspace:
+          root: .
+          paths:
+            - cliv2/bin/threatcode_windows_amd64.exe
+            - cliv2/bin/threatcode_windows_amd64.exe.sha256
+
+  test-in-proxy-environment-linux-amd64:
+    executor: linux
+    working_directory: /home/circleci/threatcode
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run acceptance tests in a proxied environment
+          working_directory: ./
+          environment:
+            TEST_THREATCODE_COMMAND: ./bin/threatcode-linux
+          command: |
+            export THREATCODE_TOKEN="${THREATCODE_API_KEY}"
+            make acceptance-test-with-proxy
+
+workflows:
+  version: 2
+  test_and_release:
+    jobs:
+      - build:
+          name: Build
+      - test-jest:
+          filters:
+            branches:
+              ignore: master
+          name: Jest Tests
+          context: nodejs-install
+          requires:
+            - Build
+      - test-tap:
+          filters:
+            branches:
+              ignore: master
+          name: Tap Tests
+          context: nodejs-install
+          requires:
+            - Build
+
+      - build-artifact:
+          name: Build (<< matrix.artifact >>)
+          requires:
+            - Build
+          context: threatcode-windows-signing
+          matrix:
+            parameters:
+              artifact:
+                - threatcode-fix.tgz
+                - threatcode-protect.tgz
+                - threatcode-alpine
+                - threatcode-linux
+                - threatcode-linux-arm64
+                - threatcode-macos
+                - threatcode-win.exe
+                - threatcode-for-docker-desktop-darwin-x64.tar.gz
+                - threatcode-for-docker-desktop-darwin-arm64.tar.gz
+                - docker-mac-signed-bundle.tar.gz
+      - test-windows:
+          filters:
+            branches:
+              ignore: master
+          name: Acceptance Tests (threatcode-win.exe)
+          context: nodejs-install
+          requires:
+            - Build (threatcode-win.exe)
+          test_threatcode_command: C:\Users\circleci\threatcode\binary-releases\threatcode-win.exe
+      - test-macos:
+          filters:
+            branches:
+              ignore: master
+          name: Acceptance Tests (threatcode-macos)
+          context: nodejs-install
+          requires:
+            - Build (threatcode-macos)
+          test_threatcode_command: /Users/distiller/threatcode/binary-releases/threatcode-macos
+      - test-linux:
+          filters:
+            branches:
+              ignore: master
+          name: Acceptance Tests (threatcode-linux)
+          context: nodejs-install
+          requires:
+            - Build (threatcode-linux)
+          test_threatcode_command: /home/circleci/threatcode/binary-releases/threatcode-linux
+      - test-linux-arm64:
+          filters:
+            branches:
+              ignore: master
+          name: Acceptance Tests (threatcode-linux-arm64)
+          context: nodejs-install
+          requires:
+            - Build (threatcode-linux-arm64)
+          test_threatcode_command: /home/circleci/threatcode/binary-releases/threatcode-linux-arm64
+      - regression-test:
+          filters:
+            branches:
+              ignore: master
+          name: Regression Tests (threatcode-linux)
+          context: nodejs-install
+          requires:
+            - Build (threatcode-linux)
+          test_threatcode_command: /mnt/ramdisk/threatcode/binary-releases/threatcode-linux
+      - prepare-release:
+          name: Prepare Release
+          context:
+            - threatcode-cli-pgp-signing
+          requires:
+            - Build (threatcode-fix.tgz)
+            - Build (threatcode-protect.tgz)
+            - Build (threatcode-for-docker-desktop-darwin-x64.tar.gz)
+            - Build (threatcode-for-docker-desktop-darwin-arm64.tar.gz)
+            - Build (docker-mac-signed-bundle.tar.gz)
+            - v2 / Prepare Release
+      - should-release:
+          name: Release?
+          type: approval
+          requires:
+            - Prepare Release
+          filters:
+            branches:
+              only:
+                - master
+      - pre-release:
+          name: Pre-Release
+          context: nodejs-app-release
+          requires:
+            - Release?
+          filters:
+            branches:
+              only:
+                - master
+      - test-release:
+          name: Test Release (<< matrix.executor >>)
+          matrix:
+            parameters:
+              executor: ['docker-node', 'win/default', 'macos']
+          requires:
+            - Pre-Release
+          filters:
+            branches:
+              only:
+                - master
+      - release:
+          name: Release
+          context: nodejs-app-release
+          requires:
+            - Test Release (docker-node)
+            - Test Release (win/default)
+            - Test Release (macos)
+          filters:
+            branches:
+              only:
+                - master
+
+      #
+      # Threatcode CLI v2 Workflow Jobs
+      #
+      - v2-lint-and-test:
+          name: v2 / Lint and Test
+      - v2-build-artifact:
+          name: v2 / Build (linux/amd64)
+          requires:
+            - Build (threatcode-linux)
+          go_os: linux
+          go_arch: amd64
+      - v2-rename-linux-artifact:
+          name: v2 / Rename linux/amd64 artifact
+          requires:
+            - v2 / Build (linux/amd64)
+      - v2-build-artifact:
+          name: v2 / Build (linux/arm64)
+          requires:
+            - Build (threatcode-linux-arm64)
+          go_os: linux
+          go_arch: arm64
+      - v2-rename-linux-arm64-artifact:
+          name: v2 / Rename linux/arm64 artifact
+          requires:
+            - v2 / Build (linux/arm64)
+      - v2-rename-alpine-amd64-artifact:
+          name: v2 / Rename alpine/amd64 artifact
+          requires:
+            - v2 / Build (alpine/amd64)
+      - v2-build-artifact:
+          name: v2 / Build (darwin/amd64)
+          requires:
+            - Build (threatcode-macos)
+          go_os: darwin
+          go_arch: amd64
+      - v2-rename-macos-artifact:
+          name: v2 / Rename macos/amd64 artifact
+          requires:
+            - v2 / Sign (darwin/amd64)
+      - v2-build-artifact:
+          name: v2 / Build (windows/amd64)
+          requires:
+            - Build (threatcode-win.exe)
+          go_os: windows
+          go_arch: amd64
+      - v2-rename-windows-artifact:
+          name: v2 / Rename windows/amd64 artifact
+          requires:
+            - v2 / Sign (windows/amd64)
+      - v2-build-artifact:
+          name: v2 / Build (alpine/amd64)
+          requires:
+            - Build (threatcode-alpine)
+          go_os: alpine
+          go_arch: amd64
+          c_compiler: /usr/bin/musl-gcc
+      - v2-test-linux-amd64:
+          filters:
+            branches:
+              ignore: master
+          name: v2 / Integration Tests (linux/amd64)
+          requires:
+            - v2 / Rename linux/amd64 artifact
+      - v2-test-linux-arm64:
+          filters:
+            branches:
+              ignore: master
+          name: v2 / Integration Tests (linux/arm64)
+          requires:
+            - v2 / Rename linux/arm64 artifact
+      - v2-test-darwin-amd64:
+          filters:
+            branches:
+              ignore: master
+          name: v2 / Integration Tests (darwin/amd64)
+          requires:
+            - v2 / Rename macos/amd64 artifact
+      - v2-test-windows-amd64:
+          filters:
+            branches:
+              ignore: master
+          name: v2 / Integration Tests (windows/amd64)
+          requires:
+            - v2 / Rename windows/amd64 artifact
+      # Tests for backwards compatibility with CLIv1
+      - test-alpine:
+          filters:
+            branches:
+              ignore: master
+          name: v2 / Jest Acceptance Tests (alpine/amd64)
+          context: nodejs-install
+          requires:
+            - v2 / Rename alpine/amd64 artifact
+          test_threatcode_command: /home/circleci/threatcode/cliv2/bin/threatcode-alpine
+      - test-linux:
+          filters:
+            branches:
+              ignore: master
+          name: v2 / Jest Acceptance Tests (linux/amd64)
+          context: nodejs-install
+          requires:
+            - v2 / Rename linux/amd64 artifact
+          test_threatcode_command: /home/circleci/threatcode/cliv2/bin/threatcode-linux
+      - test-linux-arm64:
+          filters:
+            branches:
+              ignore: master
+          name: v2 / Jest Acceptance Tests (linux/arm64)
+          context: nodejs-install
+          requires:
+            - v2 / Rename linux/arm64 artifact
+          test_threatcode_command: /home/circleci/threatcode/cliv2/bin/threatcode-linux-arm64
+      - test-windows:
+          filters:
+            branches:
+              ignore: master
+          name: v2 / Jest Acceptance Tests (windows/amd64)
+          context: nodejs-install
+          requires:
+            - v2 / Rename windows/amd64 artifact
+          test_threatcode_command: C:\Users\circleci\threatcode\cliv2\bin\threatcode-win.exe
+      - test-macos:
+          filters:
+            branches:
+              ignore: master
+          name: v2 / Jest Acceptance Tests (darwin/amd64)
+          context: nodejs-install
+          requires:
+            - v2 / Rename macos/amd64 artifact
+          test_threatcode_command: /Users/distiller/threatcode/cliv2/bin/threatcode-macos
+      - regression-test:
+          filters:
+            branches:
+              ignore: master
+          name: v2 / Regression Tests (linux/amd64)
+          context: nodejs-install
+          requires:
+            - v2 / Rename linux/amd64 artifact
+          test_threatcode_command: /mnt/ramdisk/threatcode/cliv2/bin/threatcode-linux
+      - v2-sign-darwin-amd64:
+          name: v2 / Sign (darwin/amd64)
+          context: threatcode-macos-signing
+          requires:
+            - v2 / Build (darwin/amd64)
+      - v2-sign-windows-amd64:
+          name: v2 / Sign (windows/amd64)
+          context: threatcode-windows-signing
+          requires:
+            - v2 / Build (windows/amd64)
+      - v2-prepare-release:
+          name: v2 / Prepare Release
+          requires:
+            - v2 / Rename linux/amd64 artifact
+            - v2 / Rename linux/arm64 artifact
+            - v2 / Rename macos/amd64 artifact
+            - v2 / Rename windows/amd64 artifact
+            - v2 / Rename alpine/amd64 artifact
+      - test-in-proxy-environment-linux-amd64:
+          filters:
+            branches:
+              ignore: master
+          name: v2 / Acceptance Tests With Proxy (linux/amd64)
+          requires:
+            - v2 / Rename linux/amd64 artifact

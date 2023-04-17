@@ -1,0 +1,18 @@
+# Threatcode (https://threatcode.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.0
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  THREATCODE-JS-ANSIREGEX-1583908:
+    - '*':
+        reason: Not affecting Threatcode CLI. No upgrade path currently available
+        expires: 2022-02-01T00:00:00.000Z
+        created: 2021-11-29T17:25:19.200Z
+  'threatcode:lic:npm:shescape:MPL-2.0':
+    - '*':
+        reason: --about lists all dependency licenses which is a requirement of MPL-2.0
+        expires: 2122-12-14T16:35:38.252Z
+        created: 2022-11-14T16:35:38.260Z
+patch: {}
+exclude:
+  code:
+    - test/**

@@ -1,0 +1,22 @@
+{
+  "name": "@threatcode/iac-cli-alert",
+  "version": "1.0.0",
+  "description": "Script to check IaC Smoke Test runs on Threatcode CLI",
+  "main": "dist/index.js",
+  "private": true,
+  "scripts": {
+    "start": "npm run build && node dist/index.js",
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "keywords": [],
+  "author": "threatcode.io",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@octokit/rest": "^18.0.5",
+    "@slack/webhook": "^5.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.2"
+  }
+}

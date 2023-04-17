@@ -1,0 +1,119 @@
+*  @threatcode/hammerhead @threatcode/threatcode-open-source
+
+# monorepo packages
+packages/threatcode-fix/ @threatcode/tech-services
+packages/threatcode-protect/ @threatcode/hammerhead
+packages/cli-alert/ @threatcode/hammerhead
+packages/iac-cli-alert/ @threatcode/cloud-dev-ex
+
+README.md  @threatcode/hammerhead
+CONTRIBUTING.md @threatcode/hammerhead
+.circleci @threatcode/hammerhead
+
+cliv2/ @threatcode/hammerhead
+release-scripts/hcl-to-json-parser-generator/ @threatcode/cloud-dev-ex
+release-scripts/hcl-to-json-parser-generator-v2/ @threatcode/cloud-dev-ex
+src/cli/commands/test @threatcode/threatcode-open-source
+src/cli/commands/monitor @threatcode/threatcode-open-source
+help/  @threatcode/hammerhead
+src/cli/commands/test/iac/ @threatcode/cloud-dev-ex
+src/cli/commands/describe.ts @threatcode/cloud-context
+src/cli/commands/update-exclude-policy.ts @threatcode/cloud-dev-ex
+src/cli/commands/apps @threatcode/moose
+src/lib/apps @threatcode/moose
+src/lib/container @threatcode/mycelium
+src/lib/plugins @threatcode/threatcode-open-source
+test/fixtures/sast/ @threatcode/zenith
+src/lib/plugins/sast/ @threatcode/zenith
+test/jest/unit/threatcode-code/ @threatcode/zenith
+src/lib/formatters/iac-output/ @threatcode/cloud-dev-ex
+src/lib/iac/ @threatcode/group-infrastructure-as-code
+src/lib/iac/test/ @threatcode/cloud-dev-ex
+src/lib/threatcode-test/iac-test-result.ts @threatcode/cloud-dev-ex
+test/fixtures/basic-apk/ @threatcode/mycelium
+test/fixtures/container-app-vulns/ @threatcode/mycelium
+test/fixtures/container-projects/ @threatcode/mycelium @threatcode/potion
+test/fixtures/docker/ @threatcode/mycelium @threatcode/potion
+test/fixtures/iac/ @threatcode/cloud-dev-ex
+test/fixtures/iac/drift @threatcode/cloud-context
+test/fixtures/iac/capture @threatcode/cloud-context
+test/smoke/iac/ @threatcode/cloud-dev-ex
+test/smoke/spec/threatcode_code_spec.sh @threatcode/zenith
+test/smoke/spec/threatcode_basic_spec.sh @threatcode/hammerhead
+test/smoke/.iac-data/ @threatcode/cloud-dev-ex
+test/jest/unit/lib/endpoint-config-test.spec.ts @threatcode/nebula
+test/jest/unit/lib/formatters/iac-output/ @threatcode/cloud-dev-ex
+test/jest/unit/lib/formatters/test/format-test-results.spec.ts @threatcode/hammerhead @threatcode/threatcode-open-source @threatcode/mycelium
+test/jest/unit/iac/ @threatcode/cloud-dev-ex
+test/jest/unit/cli/commands/test/iac @threatcode/cloud-dev-ex
+test/jest/unit/lib/iac/drift/ @threatcode/cloud-context
+test/jest/unit/lib/iac/test/ @threatcode/cloud-dev-ex
+test/jest/acceptance/iac/ @threatcode/cloud-dev-ex
+test/jest/acceptance/iac/describe.spec.ts @threatcode/cloud-context
+test/jest/acceptance/iac/capture.spec.ts @threatcode/cloud-context
+test/jest/acceptance/threatcode-apps @threatcode/moose
+src/lib/code-config.ts @threatcode/nebula
+src/lib/errors/describe-required-argument-error.ts @threatcode/cloud-context
+src/lib/errors/describe-exclusive-argument-error.ts @threatcode/cloud-context
+src/lib/errors/no-supported-sast-files-found.ts @threatcode/zenith
+test/jest/util/ @threatcode/hammerhead
+dangerfile.js @threatcode/hammerhead
+/package.json @threatcode/hammerhead
+/package-lock.json @threatcode/hammerhead
+/config.default.js @threatcode/hammerhead
+/webpack.common.js @threatcode/hammerhead
+/webpack.dev.js @threatcode/hammerhead
+/webpack.prod.js @threatcode/hammerhead
+/tsconfig.json @threatcode/hammerhead
+/tsconfig.settings.json @threatcode/hammerhead
+CODEOWNERS @threatcode/hammerhead
+/docker @threatcode/hammerhead
+src/cli/commands/log4shell-hashes.ts @threatcode/tundra
+src/cli/commands/log4shell.ts @threatcode/tundra
+test/fixtures/unmanaged-log4j-fixture @threatcode/tundra
+test/jest/acceptance/threatcode-log4shell/log4shell-detection.spec.ts @threatcode/tundra
+test/jest/acceptance/threatcode-test/app-vuln-container-project.spec.ts @threatcode/mycelium
+/.github @threatcode/hammerhead
+/.github/workflows/iac-smoke-tests.yml @threatcode/cloud-dev-ex
+/.github/workflows/iac-smoke-tests-pulls.yml @threatcode/cloud-dev-ex
+
+# tap tests ownership
+test/tap/cli-monitor/ @threatcode/threatcode-open-source
+test/tap/cli-test/ @threatcode/threatcode-open-source
+test/tap/args.test.ts @threatcode/hammerhead
+test/tap/auth.test.ts @threatcode/hammerhead
+test/tap/cli-fail-on-docker.test.ts @threatcode/hammerhead
+test/tap/cli-fail-on-pinnable.test.ts @threatcode/threatcode-open-source
+test/tap/cli-monitor.acceptance.test.ts @threatcode/threatcode-open-source
+test/tap/cli-test.acceptance.test.ts @threatcode/threatcode-open-source
+test/tap/cli.test.ts @threatcode/hammerhead
+test/tap/container.test.ts @threatcode/potion
+test/tap/display-test-results.test.ts @threatcode/threatcode-open-source
+test/tap/docker-token.test.ts @threatcode/potion
+test/tap/endpoint-config.test.ts @threatcode/hammerhead
+test/tap/find-files.test.ts @threatcode/threatcode-open-source
+test/tap/monitor-target.test.ts @threatcode/threatcode-open-source
+test/tap/proxy.test.js @threatcode/hammerhead
+test/tap/remote-package.test.ts @threatcode/threatcode-open-source
+test/tap/request.test.ts @threatcode/hammerhead
+test/tap/run-test.test.ts @threatcode/threatcode-open-source
+test/tap/severity-threshold.test.ts @threatcode/threatcode-open-source
+test/tap/sln-app.test.ts @threatcode/threatcode-open-source
+test/tap/sub-process.test.js @threatcode/threatcode-open-source
+test/tap/user-config.test.ts @threatcode/threatcode-open-source
+test/tap/vulnerable-path-output.js @threatcode/threatcode-open-source
+
+# protect
+test/tap/cli-protect-no-vulns-to-patch.test.ts @threatcode/hammerhead
+test/tap/patch-fetch-fail.test.ts @threatcode/hammerhead
+test/tap/cli-protect.test.ts @threatcode/hammerhead
+test/tap/protect-apply-same-patch-again.test.js @threatcode/hammerhead
+test/tap/protect-config.test.ts @threatcode/hammerhead
+test/tap/protect-factors-pre-tarred.test.ts @threatcode/hammerhead
+test/tap/protect-fail.test.js @threatcode/hammerhead
+test/tap/protect-ignore.test.js @threatcode/hammerhead
+test/tap/protect-patch-filter.test.js @threatcode/hammerhead
+test/tap/protect-patch-order.test.ts @threatcode/hammerhead
+test/tap/protect-patch-same-pkg.test.js @threatcode/hammerhead
+test/tap/protect-semver-patch.test.ts @threatcode/hammerhead
+
